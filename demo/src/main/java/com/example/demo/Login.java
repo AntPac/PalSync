@@ -55,6 +55,7 @@ public void start(Stage Stage){
     }
 
     public static void main(String[] args) {
+        System.out.println("javier was here");
         launch();
     }
 
