@@ -10,7 +10,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 
-public class Login extends  Application {
+public class  Login extends  Application {
 public void start(Stage Stage){
     Label WelcomeText = new Label("Welcome to PalSync");
     WelcomeText.setStyle("-fx-font-size: 20pt; ");
