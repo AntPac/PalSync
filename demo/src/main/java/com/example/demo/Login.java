@@ -23,7 +23,7 @@ public void start(Stage Stage){
     VBox vbox = new VBox(20);
     vbox.setAlignment(Pos.CENTER);
 
-    Image icon = new Image (getClass().getResource("/images/PalSync_Icon_1.png").toExternalForm());
+    Image icon = new Image (getClass().getResource("/images/hug.png").toExternalForm());
     Stage.getIcons().add(icon);
 
 
@@ -55,6 +55,7 @@ public void start(Stage Stage){
     }
 
     public static void main(String[] args) {
+        System.out.println("javier was here");
         launch();
     }
 
