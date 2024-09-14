@@ -10,7 +10,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 
-// Balls
+
 
 public class Login extends  Application {
     VBox vbox = new VBox();
@@ -48,28 +48,10 @@ public class Login extends  Application {
         vbox.getChildren().addAll(Image, WelcomeText,LB,SB);
     }
 
-    public void login( VBox box){
 
-        box.getChildren().clear();
+    // Removed login
 
-        Label Pint = new Label("Please Enter Your Personal Pin");
-        TextField Pin = new TextField("Ex. 1234");
-
-        Button Submit = new Button("Submit");
-        Button Back = new Button("Back");
-
-        Submit.setOnAction(event -> {
-            int pin = Integer.parseInt(Pin.getText());
-            LoginMes(pin);
-        });
-
-        Back.setOnAction(event -> Home());
-
-        box.getChildren().addAll(Pint,Pin,Submit,Back);
-
-
-
-    }
+    //
     public void NewAcc(VBox box) {
 
         box.getChildren().clear();
@@ -106,33 +88,9 @@ public class Login extends  Application {
         vbox.getChildren().addAll(Message,Back);
     }
 
-    public void LoginMes(int pin){
-        vbox.getChildren().clear();
-        boolean found = false;
-        String name = "";
+    // Removes LoginMes
 
-        for (int i=0;i< Storage.length;i++){
-            if(Storage[i] != null && Storage[i].accnum==pin){
-                found = true;
-                name = Storage[i].name;
-                break;
-            }
-        }
-
-
-
-        Button Back = new Button("Return to Home Page");
-        Back.setOnAction(event -> Home());
-
-        if (found){
-            Label Acc = new Label("Welcome Back " + name);
-            vbox.getChildren().addAll(Acc,Back);
-        } else {
-            Label noAcc = new Label("Account Doesn't Exist");
-            vbox.getChildren().addAll(noAcc,Back);
-        }
-    }
-
+    //
 
     public static void main(String[] args) {
         //System.out.println("javier was here");
