@@ -56,7 +56,7 @@ public class  Login extends  Application {
 
         Pin.setStyle("-fx-prompt-text-fill: black;"); // Ensure prompt text is visible on initial launch
 
-        // Listener to remove prompt when the user starts typing
+        // Listener to remove prompt when the user starts typing, not just when cleaning
         Pin.textProperty().addListener((observable, oldValue, newValue) -> {
             // If new text is empty, set prompt text color back to visible
             if (newValue.isEmpty()) {
