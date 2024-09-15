@@ -54,7 +54,7 @@ public class  Login extends  Application {
         TextField Pin = new TextField();
         Pin.setPromptText("Ex. 1234"); // Placeholder for pin
 
-        Pin.setStyle("-fx-prompt-text-fill: black;"); // Ensure prompt text is visible on initial launch
+        Pin.setStyle("-fx-prompt-text-fill: black;"); // Ensure prompt text is visible on initial launch.
 
         // Listener to remove prompt when the user starts typing, not just when cleaning
         Pin.textProperty().addListener((observable, oldValue, newValue) -> {
