@@ -133,7 +133,7 @@ public class  Login extends  Application {
 
 
     public static void main(String[] args) {
-        //System.out.println("javier was here");
+        System.out.println("javier was here");
         launch();
     }
     static class account{
