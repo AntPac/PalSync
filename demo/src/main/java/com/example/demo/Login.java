@@ -51,7 +51,20 @@ public class  Login extends  Application {
         box.getChildren().clear();
 
         Label Pint = new Label("Please Enter Your Personal Pin");
-        TextField Pin = new TextField("Ex. 1234");
+        TextField Pin = new TextField();
+        Pin.setPromptText("Ex. 1234"); // Placeholder for pin
+
+        Pin.setStyle("-fx-prompt-text-fill: black;"); // Ensure prompt text is visible on initial launch
+
+        // Listener to remove prompt when the user starts typing
+        Pin.textProperty().addListener((observable, oldValue, newValue) -> {
+            // If new text is empty, set prompt text color back to visible
+            if (newValue.isEmpty()) {
+                Pin.setStyle("-fx-prompt-text-fill: black;"); // Prompt visible
+            } else {
+                Pin.setStyle("-fx-prompt-text-fill: transparent;"); // Hide prompt text
+            }
+        });
 
         Button Submit = new Button("Submit");
         Button Back = new Button("Back");
@@ -74,9 +87,24 @@ public class  Login extends  Application {
 
         Label namet = new Label("Please Enter A Name");
         TextField name = new TextField();
+        name.setPromptText("Ex. John Doe"); // Placeholder for name
+        name.setStyle("-fx-prompt-text-fill: black;");
 
         Label Pint = new Label("Please Enter A 4 Digit Pin");
-        TextField Pin = new TextField("Ex. 1234");
+        TextField Pin = new TextField();
+        Pin.setPromptText("Ex. 1234"); // Placeholder for pin
+
+        Pin.setStyle("-fx-prompt-text-fill: black;"); // Ensure prompt text is visible on initial launch
+
+        // Listener to remove prompt when the user starts typing
+        Pin.textProperty().addListener((observable, oldValue, newValue) -> {
+            // If new text is empty, set prompt text color back to visible
+            if (newValue.isEmpty()) {
+                Pin.setStyle("-fx-prompt-text-fill: black;"); // Prompt visible
+            } else {
+                Pin.setStyle("-fx-prompt-text-fill: transparent;"); // Hide prompt text
+            }
+        });
 
         Button Submit = new Button("Submit");
         Button Back = new Button("Back");
@@ -133,7 +161,6 @@ public class  Login extends  Application {
 
 
     public static void main(String[] args) {
-        System.out.println("javier was here");
         launch();
     }
     static class account{
