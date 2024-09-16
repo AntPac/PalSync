@@ -10,11 +10,13 @@ import javafx.scene.layout.VBox;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 
+
 public class  Login extends  Application {
     VBox vbox = new VBox();
     Image icon = new Image(getClass().getResource("/images/hug.png").toExternalForm());
     account[] Storage = new account[10];
     int numofacc = 0;
+
     public void start(Stage Stage) {
         vbox = new VBox(20);
         vbox.setAlignment(Pos.CENTER);
@@ -51,7 +53,23 @@ public class  Login extends  Application {
         box.getChildren().clear();
 
         Label Pint = new Label("Please Enter Your Personal Pin");
-        TextField Pin = new TextField("Ex. 1234");
+        TextField Pin = new TextField();
+        Pin.setPromptText("Ex. 1234"); // Placeholder for pin
+        Pin.setStyle("-fx-prompt-text-fill: black;"); // Ensure prompt text is visible on initial launch.
+
+        Pin.setPrefWidth(150);
+        Pin.setMaxWidth(200);
+        Pin.setMinWidth(100);
+
+        // Listener to remove prompt when the user starts typing, not just when cleaning
+        Pin.textProperty().addListener((observable, oldValue, newValue) -> {
+            // If new text is empty, set prompt text color back to visible
+            if (newValue.isEmpty()) {
+                Pin.setStyle("-fx-prompt-text-fill: black;"); // Prompt visible
+            } else {
+                Pin.setStyle("-fx-prompt-text-fill: transparent;"); // Hide prompt text
+            }
+        });
 
         Button Submit = new Button("Submit");
         Button Back = new Button("Back");
@@ -74,9 +92,27 @@ public class  Login extends  Application {
 
         Label namet = new Label("Please Enter A Name");
         TextField name = new TextField();
-
+        name.setPromptText("Ex. John Doe"); // Placeholder for name
+        name.setStyle("-fx-prompt-text-fill: black;");
+        name.setPrefWidth(150);
+        name.setMaxWidth(200);
+        name.setMinWidth(100);
         Label Pint = new Label("Please Enter A 4 Digit Pin");
-        TextField Pin = new TextField("Ex. 1234");
+        TextField Pin = new TextField();
+        Pin.setPromptText("Ex. 1234"); // Placeholder for pin
+        Pin.setStyle("-fx-prompt-text-fill: black;"); // Ensure prompt text is visible on initial launch
+        Pin.setPrefWidth(150);
+        Pin.setMaxWidth(200);
+        Pin.setMinWidth(100);
+        // Listener to remove prompt when the user starts typing not just when clicking
+        Pin.textProperty().addListener((observable, oldValue, newValue) -> {
+            // If new text is empty, set prompt text color back to visible
+            if (newValue.isEmpty()) {
+                Pin.setStyle("-fx-prompt-text-fill: black;"); // Prompt visible
+            } else {
+                Pin.setStyle("-fx-prompt-text-fill: transparent;"); // Hide prompt text
+            }
+        });
 
         Button Submit = new Button("Submit");
         Button Back = new Button("Back");
@@ -133,7 +169,6 @@ public class  Login extends  Application {
 
 
     public static void main(String[] args) {
-        //System.out.println("javier was here");
         launch();
     }
     static class account{
