@@ -12,13 +12,13 @@ import javafx.scene.image.Image;
 
 public class  Login extends  Application {
     VBox vbox = new VBox();
-    Image icon = new Image(getClass().getResource("/images/hug.png").toExternalForm());
+    Image icon = new Image(getClass().getResource("/images/hug_transparent.png").toExternalForm());
     account[] Storage = new account[10];
     int numofacc = 0;
     public void start(Stage Stage) {
         vbox = new VBox(20);
         vbox.setAlignment(Pos.CENTER);
-        vbox.setStyle("-fx-background-color: khaki; ");
+        vbox.setStyle("-fx-background-color: #FEF3E0;");
 
         Stage.getIcons().add(icon);
 
