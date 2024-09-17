@@ -56,10 +56,10 @@ public class  Login extends  Application {
         TextField Pin = new TextField();
         Pin.setPromptText("Ex. 1234"); // Placeholder for pin
         Pin.setStyle("-fx-prompt-text-fill: black;"); // Ensure prompt text is visible on initial launch.
-
-        Pin.setPrefWidth(150);
-        Pin.setMaxWidth(200);
-        Pin.setMinWidth(100);
+Pint.setStyle("-fx-font-size:20pt;");
+        Pin.setPrefSize(300,50);
+        Pin.setMaxSize(500,200);
+        Pin.setMinSize(100,50);
 
         // Listener to remove prompt when the user starts typing, not just when cleaning
         Pin.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -73,7 +73,14 @@ public class  Login extends  Application {
 
         Button Submit = new Button("Submit");
         Button Back = new Button("Back");
-
+        Submit.setStyle("-fx-font-size:12pt;"+"-fx-font-Weight: Bold;");
+        Submit.setPrefSize(40,40);
+        Submit.setMaxSize(100,200);
+        Submit.setMinSize(20,10);
+        Back.setStyle("-fx-font-size:12pt;"+"-fx-font-Weight: Bold;");
+        Back.setPrefSize(40,40);
+        Back.setMaxSize(100,200);
+        Back.setMinSize(20,50);
         Submit.setOnAction(event -> {
             int pin = Integer.parseInt(Pin.getText());
             LoginMes(pin);
@@ -94,16 +101,18 @@ public class  Login extends  Application {
         TextField name = new TextField();
         name.setPromptText("Ex. John Doe"); // Placeholder for name
         name.setStyle("-fx-prompt-text-fill: black;");
-        name.setPrefWidth(150);
-        name.setMaxWidth(200);
-        name.setMinWidth(100);
+        namet.setStyle("-fx-font-size:20pt;");
+        name.setPrefSize(300,50);
+        name.setMaxSize(500,200);
+        name.setMinSize(100,50);
         Label Pint = new Label("Please Enter A 4 Digit Pin");
         TextField Pin = new TextField();
         Pin.setPromptText("Ex. 1234"); // Placeholder for pin
         Pin.setStyle("-fx-prompt-text-fill: black;"); // Ensure prompt text is visible on initial launch
-        Pin.setPrefWidth(150);
-        Pin.setMaxWidth(200);
-        Pin.setMinWidth(100);
+        Pint.setStyle("-fx-font-size:20pt;");
+        Pin.setPrefSize(300,50);
+        Pin.setMaxSize(500,200);
+        Pin.setMinSize(100,50);
         // Listener to remove prompt when the user starts typing not just when clicking
         Pin.textProperty().addListener((observable, oldValue, newValue) -> {
             // If new text is empty, set prompt text color back to visible
@@ -116,6 +125,14 @@ public class  Login extends  Application {
 
         Button Submit = new Button("Submit");
         Button Back = new Button("Back");
+        Submit.setStyle("-fx-font-size:12pt;"+"-fx-font-Weight: Bold;");
+        Submit.setPrefSize(40,40);
+        Submit.setMaxSize(100,200);
+        Submit.setMinSize(20,20);
+        Back.setStyle("-fx-font-size:12pt;"+"-fx-font-Weight: Bold;");
+        Back.setPrefSize(40,40);
+        Back.setMaxSize(100,200);
+        Back.setMinSize(20,20);
 
         Submit.setOnAction(event -> {
             int pin = Integer.parseInt(Pin.getText());
@@ -179,5 +196,7 @@ public class  Login extends  Application {
             this.name = name;
         }
     }
+
+
 }
 
