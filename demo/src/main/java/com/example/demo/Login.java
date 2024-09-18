@@ -43,81 +43,7 @@ public class Login extends Application {
         SB.setOnAction(event -> NewAcc(vbox));
         vbox.getChildren().addAll(Image, WelcomeText, LB, SB);
     }
-  /*  public void switchPin(VBox box, boolean showUn, PasswordField Pin, TextField unPin, CheckBox showPin, Button Submit, Button Back) {
-    // Clear the current children to avoid duplicate components
-    box.getChildren().clear();
-
-    // Add the common components (label and buttons)
-    Label Pint = new Label("Please Enter Your Personal Pin");
-    Pint.setStyle("-fx-font-size:20pt;");
-
-    // Check whether to show the unmasked TextField or the masked PasswordField
-    if (showUn) {
-        // Show the unmasked PIN (TextField)
-        box.getChildren().addAll(Pint, unPin, showPin, Submit, Back);
-    } else {
-        // Show the masked PIN (PasswordField)
-        box.getChildren().addAll(Pint, Pin, showPin, Submit, Back);
-    }
-}
-
-// Updated login method with the switch between masked and unmasked PIN
-public void login(VBox box) {
-    box.getChildren().clear();
-
-    // PasswordField for masked input
-    PasswordField Pin = new PasswordField();
-    Pin.setPromptText("Ex. 1234");
-    Pin.setPrefSize(300, 50);
-    Pin.setMaxSize(500,200);
-    Pin.setMinSize(100,50);
-
-
-    // TextField for unmasked input
-    TextField unPin = new TextField();
-    unPin.setPrefSize(300, 50);
-    unPin.setMaxSize(500,200);
-    unPin.setMinSize(100,50);
-
-
-    // Initially, show the masked input (PasswordField)
-    unPin.setVisible(false);
-
-    // Sync the text between PasswordField and TextField
-    unPin.textProperty().bindBidirectional(Pin.textProperty());
-
-    // Toggle visibility CheckBox
-    CheckBox showPin = new CheckBox("Show PIN");
-
-
-    Button Submit = new Button("Submit");
-    Button Back = new Button("Back");
-
-    // switchPinView
-    switchPin(box, false, Pin, unPin, showPin, Submit, Back);
-
-    // Toggle between PasswordField and TextField when the checkbox is selected
-    showPin.setOnAction(event -> {
-        if (showPin.isSelected()) {
-            // switchPinView
-            switchPin(box, true, Pin, unPin, showPin, Submit, Back);
-        } else {
-            // switchPinView
-            switchPin(box, false, Pin, unPin, showPin, Submit, Back);
-        }
-    });
-
-    // Event handler for Submit button
-    Submit.setOnAction(event -> {
-        int pin = Integer.parseInt(Pin.getText());
-        LoginMes(pin);
-    });
-
-    // Event handler for Back button
-    Back.setOnAction(event -> Home());
-}
-*/
-    public void login(VBox box) {
+    public void login(VBox box ) {
         box.getChildren().clear();
 
         Label Pint = new Label("Please Enter Your Personal Pin");
@@ -127,37 +53,27 @@ public void login(VBox box) {
         PasswordField Pin = new PasswordField();
         Pin.setPromptText("Ex. 1234");
         Pin.setPrefSize(300, 50);
-        Pin.setMaxSize(500,200);
-        Pin.setMinSize(100,50);
+        Pin.setMaxSize(500, 200);
+        Pin.setMinSize(100, 50);
 
 
         TextField unPin = new TextField();
         unPin.setPrefSize(300, 50);
-        unPin.setMaxSize(500,200);
-        unPin.setMinSize(100,50);
+        unPin.setMaxSize(500, 200);
+        unPin.setMinSize(100, 50);
 
-        unPin.setVisible(false); // Initially invisible
 
 
         CheckBox showPin = new CheckBox("Show PIN");
 
 
         unPin.textProperty().bindBidirectional(Pin.textProperty());
-        showPin.setOnAction(event -> {
-            if (showPin.isSelected()) {
-                unPin.setText(Pin.getText());
-                Pin.setVisible(false);
-                unPin.setVisible(true);
-            } else {
-                Pin.setText(unPin.getText());
-                Pin.setVisible(true);
-                unPin.setVisible(false);
-            }
-        });
+
+
 
         Button Submit = new Button("Submit");
         Button Back = new Button("Back");
-        Button forgotPin = new Button ("ForgotPin");
+        Button forgotPin = new Button("ForgotPin");
 
         Submit.setOnAction(event -> {
             int pin = Integer.parseInt(Pin.getText());
@@ -168,9 +84,21 @@ public void login(VBox box) {
         forgotPin.setOnAction(event -> {
             forgotPin(box);
         });
+        showPin.setOnAction(event -> {
+            box.getChildren().clear();
+
+            if (showPin.isSelected()) {
+                unPin.setText(Pin.getText());
+                box.getChildren().addAll(Pint,unPin, showPin, Submit, forgotPin, Back);
+            } else {
+                Pin.setText(unPin.getText());
+                box.getChildren().addAll(Pint,Pin, showPin, Submit, forgotPin, Back);
+            }
+        });
+
+            box.getChildren().addAll(Pint,Pin, showPin, Submit, forgotPin, Back);
 
 
-        box.getChildren().addAll(Pint,Pin, unPin, showPin, Submit,forgotPin, Back);
     }
     public void forgotPin(VBox box) {
         box.getChildren().clear();
@@ -226,19 +154,10 @@ public void login(VBox box) {
         unPin.setPrefSize(300, 50);
         unPin.setMaxSize(500,200);
         unPin.setMinSize(100,50);
-        unPin.setVisible(false);
 
         CheckBox showPin = new CheckBox("Show PIN");
         unPin.textProperty().bindBidirectional(newPinField.textProperty());
-        showPin.setOnAction(event -> {
-            if (showPin.isSelected()) {
-                unPin.setVisible(true);
-                newPinField.setVisible(false);
-            } else {
-                unPin.setVisible(false);
-                newPinField.setVisible(true);
-            }
-        });
+
 
         Button submitButton = new Button("Submit");
         Button backButton = new Button("Back");
@@ -250,8 +169,18 @@ public void login(VBox box) {
         });
 
         backButton.setOnAction(event -> login(vbox));
+        showPin.setOnAction(event -> {
+            box.getChildren().clear();
 
-        box.getChildren().addAll(resetLabel, newPinField, unPin, showPin, submitButton, backButton);
+            if (showPin.isSelected()) {
+                unPin.setText(newPinField.getText());
+                box.getChildren().addAll(resetLabel,unPin, showPin, submitButton, backButton);
+            } else {
+                newPinField.setText(unPin.getText());
+                box.getChildren().addAll(resetLabel,newPinField, showPin, submitButton,backButton);
+            }
+        });
+        box.getChildren().addAll(resetLabel, newPinField, showPin, submitButton, backButton);
     }
 
     public void updatePin(String name, int newPin) {
@@ -291,24 +220,12 @@ public void login(VBox box) {
         unPin.setMaxSize(500,200);
         unPin.setMinSize(100,50);
 
-        unPin.setVisible(false); // Initially invisible
-
 
         CheckBox showPin = new CheckBox("Show PIN");
 
 
         unPin.textProperty().bindBidirectional(Pin.textProperty());
 
-
-        showPin.setOnAction(event -> {
-            if (showPin.isSelected()) {
-                Pin.setVisible(false);
-                unPin.setVisible(true);
-            } else {
-                Pin.setVisible(true);
-                unPin.setVisible(false);
-            }
-        });
 
         Button Submit = new Button("Submit");
         Button Back = new Button("Back");
@@ -319,8 +236,18 @@ public void login(VBox box) {
         });
 
         Back.setOnAction(event -> Home());
+        showPin.setOnAction(event -> {
+            box.getChildren().clear();
 
-        box.getChildren().addAll(namet, name, Pint, Pin, unPin, showPin, Submit, Back);
+            if (showPin.isSelected()) {
+                unPin.setText(Pin.getText());
+                box.getChildren().addAll(namet,name, Pint,unPin, showPin, Submit, Back);
+            } else {
+                Pin.setText(unPin.getText());
+                box.getChildren().addAll(namet,name,Pint,Pin, showPin, Submit, Back);
+            }
+        });
+        box.getChildren().addAll(namet, name, Pint, Pin, showPin, Submit, Back);
     }
 
     public void NewAccMes(int pin, String name) {
