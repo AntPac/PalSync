@@ -195,8 +195,7 @@ public void login(VBox box) {
             } else {
                 Label error = new Label("No account found with that name.");
                 vbox.getChildren().add(error);
-            }
-        });
+            }});
 
         backButton.setOnAction(event -> login(vbox));
 
