@@ -117,7 +117,6 @@ public void login(VBox box) {
     Back.setOnAction(event -> Home());
 }
 */
-
     public void login(VBox box) {
         box.getChildren().clear();
 
