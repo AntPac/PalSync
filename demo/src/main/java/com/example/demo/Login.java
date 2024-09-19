@@ -1,13 +1,11 @@
 package com.example.demo;
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.geometry.Pos;
 import javafx.scene.layout.VBox;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 
 public class  Login extends  Application {
@@ -51,8 +49,15 @@ public class  Login extends  Application {
         box.getChildren().clear();
 
         Label Pint = new Label("Please Enter Your Personal Pin");
-        TextField Pin = new TextField();
-        Pin.setPromptText("Ex. 1234"); // Placeholder for pin
+        PasswordField Pin = new PasswordField();
+        Pin.setPromptText("Ex. 1234");
+        Pin.setPrefSize(300, 50);
+        Pin.setMaxSize(500, 200);
+        Pin.setMinSize(100, 50);
+        TextField unPin = new TextField();
+        unPin.setPrefSize(300, 50);
+        unPin.setMaxSize(500, 200);
+        unPin.setMinSize(100, 50);
 
         Pin.setStyle("-fx-prompt-text-fill: black;"); // Ensure prompt text is visible on initial launch.
 
@@ -65,9 +70,16 @@ public class  Login extends  Application {
                 Pin.setStyle("-fx-prompt-text-fill: transparent;"); // Hide prompt text
             }
         });
+        CheckBox showPin = new CheckBox("Show PIN");
+
+
+
+
+        unPin.textProperty().bindBidirectional(Pin.textProperty());
 
         Button Submit = new Button("Submit");
         Button Back = new Button("Back");
+        Button forgotPin = new Button("ForgotPin");
 
         Submit.setOnAction(event -> {
             int pin = Integer.parseInt(Pin.getText());
@@ -76,11 +88,141 @@ public class  Login extends  Application {
 
         Back.setOnAction(event -> Home());
 
-        box.getChildren().addAll(Pint,Pin,Submit,Back);
+
+
+        forgotPin.setOnAction(event -> {
+            forgotPin(box);
+        });
+        showPin.setOnAction(event -> {
+            box.getChildren().clear();
+
+
+            if (showPin.isSelected()) {
+                unPin.setText(Pin.getText());
+                box.getChildren().addAll(Pint,unPin, showPin, Submit, forgotPin, Back);
+            } else {
+                Pin.setText(unPin.getText());
+                box.getChildren().addAll(Pint,Pin, showPin, Submit, forgotPin, Back);
+            }
+        });
+
+
+        box.getChildren().addAll(Pint,Pin, showPin, Submit, forgotPin, Back);
+
 
 
 
     }
+    public void forgotPin(VBox box) {
+        box.getChildren().clear();
+
+
+        Label nameLabel = new Label("Please Enter Your Name");
+        nameLabel.setStyle("-fx-font-size: 20pt;");
+
+
+        TextField nameField = new TextField();
+        nameField.setPromptText("Ex. John Doe");
+        nameField.setPrefSize(300, 50);
+        nameField.setMaxSize(500,200);
+        nameField.setMinSize(100,50);
+
+
+        Button submitButton = new Button("Submit");
+        Button backButton = new Button("Back");
+
+
+        submitButton.setOnAction(event -> {
+            String name = nameField.getText();
+            if (checkAccountExists(name)) {
+                resetPin(vbox, name);
+            } else {
+                Label error = new Label("No account found with that name.");
+                vbox.getChildren().add(error);
+            }});
+
+
+        backButton.setOnAction(event -> login(vbox));
+
+
+        box.getChildren().addAll(nameLabel, nameField, submitButton, backButton);
+    }
+
+
+    public boolean checkAccountExists(String name) {
+        for (account acc : Storage) {
+            if (acc != null && acc.name.equals(name)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    public void resetPin(VBox box, String name) {
+        box.getChildren().clear();
+
+
+        Label resetLabel = new Label("Enter a new 4-digit Pin");
+        resetLabel.setStyle("-fx-font-size: 20pt;");
+
+
+        PasswordField newPinField = new PasswordField();
+        newPinField.setPromptText("Ex. 1234");
+        newPinField.setPrefSize(300, 50);
+        newPinField.setMaxSize(500,200);
+        newPinField.setMinSize(100,50);
+
+
+        TextField unPin = new TextField();
+        unPin.setPrefSize(300, 50);
+        unPin.setMaxSize(500,200);
+        unPin.setMinSize(100,50);
+
+
+        CheckBox showPin = new CheckBox("Show PIN");
+        unPin.textProperty().bindBidirectional(newPinField.textProperty());
+
+
+
+
+        Button submitButton = new Button("Submit");
+        Button backButton = new Button("Back");
+
+
+        submitButton.setOnAction(event -> {
+            int newPin = Integer.parseInt(newPinField.getText());
+            updatePin(name, newPin);
+            Home();
+        });
+
+
+        backButton.setOnAction(event -> login(vbox));
+        showPin.setOnAction(event -> {
+            box.getChildren().clear();
+
+
+            if (showPin.isSelected()) {
+                unPin.setText(newPinField.getText());
+                box.getChildren().addAll(resetLabel,unPin, showPin, submitButton, backButton);
+            } else {
+                newPinField.setText(unPin.getText());
+                box.getChildren().addAll(resetLabel,newPinField, showPin, submitButton,backButton);
+            }
+        });
+        box.getChildren().addAll(resetLabel, newPinField, showPin, submitButton, backButton);
+    }
+
+
+    public void updatePin(String name, int newPin) {
+        for (account acc : Storage) {
+            if (acc != null && acc.name.equals(name)) {
+                acc.accnum = newPin;
+                break;
+            }
+        }
+    }
+
     public void NewAcc(VBox box) {
 
         box.getChildren().clear();
@@ -89,10 +231,27 @@ public class  Login extends  Application {
         TextField name = new TextField();
         name.setPromptText("Ex. John Doe"); // Placeholder for name
         name.setStyle("-fx-prompt-text-fill: black;");
+        name.setPrefSize(300, 50);
+        name.setMaxSize(500,200);
+        name.setMinSize(100,50);
 
         Label Pint = new Label("Please Enter A 4 Digit Pin");
-        TextField Pin = new TextField();
-        Pin.setPromptText("Ex. 1234"); // Placeholder for pin
+        PasswordField Pin = new PasswordField();
+        Pin.setPromptText("Ex. 1234");
+        Pin.setPrefSize(300, 50);
+        Pin.setMaxSize(500,200);
+        Pin.setMinSize(100,50);
+
+
+
+
+
+
+        TextField unPin = new TextField();
+        unPin.setPrefSize(300, 50);
+        unPin.setMaxSize(500,200);
+        unPin.setMinSize(100,50);
+
 
         Pin.setStyle("-fx-prompt-text-fill: black;"); // Ensure prompt text is visible on initial launch
 
@@ -105,6 +264,12 @@ public class  Login extends  Application {
                 Pin.setStyle("-fx-prompt-text-fill: transparent;"); // Hide prompt text
             }
         });
+        CheckBox showPin = new CheckBox("Show PIN");
+
+
+
+
+        unPin.textProperty().bindBidirectional(Pin.textProperty());
 
         Button Submit = new Button("Submit");
         Button Back = new Button("Back");
@@ -115,7 +280,22 @@ public class  Login extends  Application {
         });
         Back.setOnAction(event -> Home());
 
-        box.getChildren().addAll(namet,name,Pint,Pin,Submit,Back);
+
+
+        showPin.setOnAction(event -> {
+            box.getChildren().clear();
+
+
+            if (showPin.isSelected()) {
+                unPin.setText(Pin.getText());
+                box.getChildren().addAll(namet,name, Pint,unPin, showPin, Submit, Back);
+            } else {
+                Pin.setText(unPin.getText());
+                box.getChildren().addAll(namet,name,Pint,Pin, showPin, Submit, Back);
+            }
+        });
+        box.getChildren().addAll(namet, name, Pint, Pin, showPin, Submit, Back);
+
 
     }
 
