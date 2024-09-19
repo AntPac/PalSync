@@ -11,7 +11,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.control.ScrollPane;
 
 public class Calander extends Application {
-    HBox hb = new HBox();;
+    HBox hb = new HBox();
 
     public static void main(String[] args) {
         launch();
@@ -47,7 +47,7 @@ public void start(Stage Stage){
             VBox one = days[i];
             VBox two = new VBox(60);
             for (int j=1;j< 12; j++) {
-                if (i<10) {
+                if (j<10) {
                     test = new Label(j + ":00 AM        ");
                 } else {
                     test = new Label(j + ":00 AM       ");
@@ -56,7 +56,7 @@ public void start(Stage Stage){
                 two.getChildren().add(test);
             }
             for (int j=1;j< 12; j++) {
-                if (i<10) {
+                if (j<10) {
                     test = new Label(j + ":00 PM        ");
                 } else {
                     test = new Label(j + ":00 PM       ");
