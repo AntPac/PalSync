@@ -20,6 +20,7 @@ public class Calander extends Application {
 public void start(Stage Stage){
 
         WeekView();
+    hb.setStyle("-fx-background-color: LightBlue;");
         Scene scene = new Scene(hb, 800, 600);
         Stage.setScene(scene);
         Stage.setFullScreen(true);
@@ -42,28 +43,41 @@ public void start(Stage Stage){
         for (int i=0;i<days.length;i++){
                 days[i] = new VBox();
             Scrolldays[i] = new ScrollPane();
+            days[i].setStyle("-fx-background-color: LightBlue;");
     }
         for(int i=0;i<days.length;i++){
             VBox one = days[i];
-            VBox two = new VBox(60);
+            VBox two = new VBox(80);
+            test = new Label("12:00 AM");
+            test.setStyle("-fx-font-size: 14pt");
+            two.getChildren().add(test);
+
             for (int j=1;j< 12; j++) {
                 if (j<10) {
-                    test = new Label(j + ":00 AM        ");
+                    test = new Label(j + ":00 AM");
                 } else {
-                    test = new Label(j + ":00 AM       ");
+                    test = new Label(j + ":00 AM");
                 }
                 test.setStyle("-fx-font-size: 14pt");
                 two.getChildren().add(test);
             }
+
+            test = new Label("12:00 PM");
+            test.setStyle("-fx-font-size: 14pt");
+            two.getChildren().add(test);
+
             for (int j=1;j< 12; j++) {
                 if (j<10) {
-                    test = new Label(j + ":00 PM        ");
+                    test = new Label(j + ":00 PM");
                 } else {
-                    test = new Label(j + ":00 PM       ");
+                    test = new Label(j + ":00 PM");
                 }
                 test.setStyle("-fx-font-size: 14pt");
                 two.getChildren().add(test);
             }
+            test = new Label("11:59 PM");
+            test.setStyle("-fx-font-size: 14pt");
+            two.getChildren().add(test);
             day = new Label(daynames[i]);
             day.setStyle("-fx-font-size: 16pt;"+"-fx-font-weight: bold;");
             one.getChildren().addAll(day,two);
