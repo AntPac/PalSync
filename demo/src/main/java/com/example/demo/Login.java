@@ -339,6 +339,11 @@ public class  Login extends  Application {
         }
     }
 
+    // Commit Test
+    public String fart(){
+        return "fart test";
+    }
+
 
     public static void main(String[] args) {
         launch();
@@ -352,4 +357,5 @@ public class  Login extends  Application {
         }
     }
 }
+
 
