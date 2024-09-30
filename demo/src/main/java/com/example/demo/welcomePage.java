@@ -7,9 +7,10 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class welcomePage extends Application {
-   static Parent root;
+
+  // static Parent root;
     public void start(Stage Stage) throws IOException {
-         root = FXMLLoader.load(getClass().getResource("/FXML Files/welcomePagefxml.fxml")); // Replace with your actual FXML path
+         Parent root = FXMLLoader.load(getClass().getResource("/FXML Files/welcomePagefxml.fxml")); // Replace with your actual FXML path
         Scene scene = new Scene(root, 600, 400);
 
         Stage.setTitle("PalSync");
