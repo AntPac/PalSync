@@ -24,38 +24,47 @@
                   <Font name="Yu Gothic Medium" size="35.0" />
                </font>
             </Label>
-            <AnchorPane layoutX="311.0" prefHeight="400.0" prefWidth="290.0" style="-fx-background-color: #ffffff;">
+            <AnchorPane layoutX="311.0" prefHeight="400.0" prefWidth="290.0" style="-fx-background-color: #ffffff; -fx-cursor: hand;">
                <children>
                   <Label layoutX="44.0" layoutY="42.0" text="Login" textFill="#353d3a">
                      <font>
                         <Font name="Yu Gothic Bold" size="21.0" />
                      </font>
                   </Label>
-                  <Label layoutX="112.0" layoutY="217.0" text="Enter pin" textAlignment="CENTER" textFill="#bcbcbc">
+                  <Label layoutX="44.0" layoutY="164.0" text="Password" textAlignment="CENTER" textFill="#bcbcbc">
                      <font>
                         <Font name="Yu Gothic Medium" size="15.0" />
                      </font>
                   </Label>
-                  <PasswordField layoutX="75.0" layoutY="242.0" prefHeight="33.0" prefWidth="149.0" promptText="Input 4-digit pin">
+                  <PasswordField fx:id="tf_password" layoutX="44.0" layoutY="183.0" prefHeight="33.0" prefWidth="149.0">
                      <font>
                         <Font name="Yu Gothic Light" size="12.0" />
                      </font>
                   </PasswordField>
-                  <Label layoutX="92.0" layoutY="283.0" text="New here?" textFill="#353d3a">
+                  <Label layoutX="90.0" layoutY="336.0" text="New here?" textFill="#353d3a">
                      <font>
                         <Font name="Yu Gothic Medium" size="12.0" />
                      </font>
                   </Label>
-                  <Label layoutX="157.0" layoutY="283.0" text="Signup" textFill="#46c190">
+                  <Button fx:id="button_sign_up" layoutX="146.0" layoutY="332.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Signup" textFill="#46c190">
                      <font>
                         <Font name="Yu Gothic Regular" size="12.0" />
                      </font>
+                  </Button>
+                  <Button fx:id="button_login" layoutX="46.0" layoutY="228.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="68.0" style="-fx-background-color: #46c190; -fx-cursor: hand;" text="Login" textFill="WHITE">
+                     <font>
+                        <Font name="Yu Gothic Medium" size="12.0" />
+                     </font></Button>
+                  <PasswordField fx:id="tf_username" layoutX="44.0" layoutY="122.0" prefHeight="33.0" prefWidth="149.0">
+                     <font>
+                        <Font name="Yu Gothic Light" size="12.0" />
+                     </font>
+                  </PasswordField>
+                  <Label layoutX="44.0" layoutY="103.0" text="Username" textAlignment="CENTER" textFill="#bcbcbc">
+                     <font>
+                        <Font name="Yu Gothic Medium" size="15.0" />
+                     </font>
                   </Label>
-                  <ImageView fitHeight="130.0" fitWidth="130.0" layoutX="80.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@hug_transparent.png" />
-                     </image>
-                  </ImageView>
                </children>
             </AnchorPane>
          </children>
