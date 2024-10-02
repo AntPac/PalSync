@@ -1,2 +1,4 @@
-package com.example.demo;public class DBUtils {
+package com.example.demo;
+
+public class DBUtils {
 }
