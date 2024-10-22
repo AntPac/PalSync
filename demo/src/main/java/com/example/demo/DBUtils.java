@@ -52,7 +52,7 @@ public class DBUtils {
         ResultSet resultSet = null;
 
         try {
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/PalSyncData", "root", "Silverlining1986");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/palsync-login", "root", "Silverlining1986");
 
             psCheckUserExists = connection.prepareStatement("SELECT * FROM users WHERE username = ?");
             psCheckUserExists.setString(1, username);
@@ -64,7 +64,7 @@ public class DBUtils {
                 alert.setContentText("Username is already taken.");
                 alert.show();
             } else {
-                psInsert = connection.prepareStatement("INSERT INTO users (username, password VALUES (? , ?)");
+                psInsert = connection.prepareStatement("INSERT INTO users (username, password) VALUES (? , ?)");
                 psInsert.setString(1, username);
                 psInsert.setString(2, password);
                 psInsert.executeUpdate();
@@ -120,7 +120,7 @@ public class DBUtils {
         ResultSet resultSet = null;
 
         try {
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/PalSyncData", "root", "Silverlining1986");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/palsync-login", "root", "Silverlining1986");
             preparedStatement = connection.prepareStatement("SELECT password FROM users WHERE username = ?");
             preparedStatement.setString(1, username);
             resultSet = preparedStatement.executeQuery();

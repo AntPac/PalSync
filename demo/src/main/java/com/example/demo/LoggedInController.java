@@ -44,7 +44,7 @@ public class LoggedInController implements Initializable {
     }
 
     public void setUserInformation(String username){
-        label_welcome.setText(STR."Welcome \{username}!");
+        label_welcome.setText("Welcome " + username + "!");
     }
 
 
