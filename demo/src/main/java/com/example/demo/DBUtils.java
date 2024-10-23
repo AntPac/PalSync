@@ -52,7 +52,12 @@ public class DBUtils {
         ResultSet resultSet = null;
 
         try {
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/palsync-login", "root", "Silverlining1986");
+            connection = DriverManager.getConnection(
+                    "jdbc:mysql://palsyncdb.cp80som8q24b.us-west-1.rds.amazonaws.com:3306/PalSyncData",
+                    "PalsyncADMIN",
+                    "PalSync123"
+            );
+
 
             psCheckUserExists = connection.prepareStatement("SELECT * FROM users WHERE username = ?");
             psCheckUserExists.setString(1, username);
