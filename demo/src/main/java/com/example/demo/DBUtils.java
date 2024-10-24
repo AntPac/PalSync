@@ -53,8 +53,8 @@ public class DBUtils {
 
         try {
             connection = DriverManager.getConnection(
-                    "jdbc:mysql://palsyncdb.cp80som8q24b.us-west-1.rds.amazonaws.com:3306/PalSyncData",
-                    "PalsyncADMIN",
+                    "jdbc:mysql://palsyncdb.criwyey84l3h.us-east-1.rds.amazonaws.com:3306/PalSyncData?useSSL=false",
+                    "PalADMIN",
                     "PalSync123"
             );
 
@@ -125,7 +125,12 @@ public class DBUtils {
         ResultSet resultSet = null;
 
         try {
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/palsync-login", "root", "Silverlining1986");
+            connection = DriverManager.getConnection(
+                    "jdbc:mysql://palsyncdb.criwyey84l3h.us-east-1.rds.amazonaws.com:3306/PalSyncData?useSSL=false",
+                    "PalADMIN",
+                    "PalSync123"
+            );
+
             preparedStatement = connection.prepareStatement("SELECT password FROM users WHERE username = ?");
             preparedStatement.setString(1, username);
             resultSet = preparedStatement.executeQuery();
