@@ -13,7 +13,9 @@
                         <Image url="@greenBG.jpg" />
                     </image>
                 </ImageView>
-            <Label layoutX="209.0" layoutY="192.0" text="TEMP HOME PAGE PLACEHOLDER" />
+                <Label layoutX="209.0" layoutY="192.0" text="TEMP HOME PAGE PLACEHOLDER" />
+                <Label fx:id="label_welcome" layoutX="209.0" layoutY="220.0" text="Welcome!" />
+                <Button fx:id="button_logout" layoutX="250.0" layoutY="260.0" text="Logout" />
             </children>
         </AnchorPane>
     </children>
