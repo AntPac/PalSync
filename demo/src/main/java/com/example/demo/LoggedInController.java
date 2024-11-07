@@ -26,25 +26,25 @@ import java.util.ResourceBundle;
 public class LoggedInController implements Initializable {
 
 
-    @FXML
+   /* @FXML
     private Button button_logout;
     @FXML
-    private Label label_welcome;
+    private Label label_welcome; */
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        button_logout.setOnAction(new EventHandler<ActionEvent>() {
+       /* button_logout.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 DBUtils.changeScene(actionEvent, "sample.fxml", "Log in", null);
             }
-        });
+        }); */
     }
 
     public void setUserInformation(String username){
-        label_welcome.setText("Welcome " + username + "!");
+       // label_welcome.setText("Welcome " + username + "!");
     }
 
 
