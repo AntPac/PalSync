@@ -10,6 +10,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
+import java.sql.*;
 import java.util.ResourceBundle;
 
 public class MakeEventController implements Initializable {
@@ -61,18 +62,14 @@ public class MakeEventController implements Initializable {
                 String endTime = endTimeComboBox.getValue();
                 String note = noteField.getText();
 
-                // Create a new Event instance
-                Event newEvent = new Event(eventName, eventDate, startTime, endTime, note);
+                // Validate that all necessary fields are filled
+                if (eventName.isEmpty() || eventDate.isEmpty() || startTime == null || endTime == null) {
+                    System.out.println("Please fill in all the required fields.");
+                    return;
+                }
 
-                // Add the event to EventManager
-                EventManager.addEvent(newEvent);
-
-                System.out.println("Event saved to EventManager:");
-                System.out.println("Name: " + eventName);
-                System.out.println("Date: " + eventDate);
-                System.out.println("Start Time: " + startTime);
-                System.out.println("End Time: " + endTime);
-                System.out.println("Note: " + note);
+                // Save the event to the database
+                saveEventToDatabase(eventName, eventDate, startTime, endTime, note);
             }
         });
 
@@ -90,5 +87,50 @@ public class MakeEventController implements Initializable {
                 System.out.println("Event creation canceled");
             }
         });
+    }
+    private void saveEventToDatabase(String eventName, String eventDate, String startTime, String endTime, String note) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            // Connect to the database
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/PalSyncDB", "root", "AugChico");
+
+            // Get the user_id based on the username
+            preparedStatement = connection.prepareStatement("SELECT user_ID FROM users WHERE username = ?");
+            preparedStatement.setString(1, this.username);
+            resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                int userId = resultSet.getInt("user_ID");
+
+                // Insert the event into the database
+                preparedStatement = connection.prepareStatement(
+                        "INSERT INTO events (user_id, event_name, event_date, start_time, end_time) VALUES (?, ?, ?, ?, ?)"
+                );
+                preparedStatement.setInt(1, userId);
+                preparedStatement.setString(2, eventName);
+                preparedStatement.setDate(3, java.sql.Date.valueOf(eventDate));
+                preparedStatement.setTime(4, java.sql.Time.valueOf(startTime + ":00"));
+                preparedStatement.setTime(5, java.sql.Time.valueOf(endTime + ":00"));
+
+                preparedStatement.executeUpdate();
+                System.out.println("Event saved to database.");
+            } else {
+                System.out.println("User not found.");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // Close resources
+            try {
+                if (resultSet != null) resultSet.close();
+                if (preparedStatement != null) preparedStatement.close();
+                if (connection != null) connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
