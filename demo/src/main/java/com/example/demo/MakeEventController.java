@@ -35,6 +35,12 @@ public class MakeEventController implements Initializable {
     @FXML
     private Button cancelButton;
 
+    private String username;
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
