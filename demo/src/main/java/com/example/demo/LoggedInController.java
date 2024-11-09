@@ -1,10 +1,17 @@
 package com.example.demo;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.ContextMenu;
 import javafx.scene.control.ListView;
+import javafx.scene.control.MenuItem;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -107,6 +114,46 @@ public class LoggedInController implements Initializable {
             dayBox.setOnMouseClicked(event -> {
                 String date = getDateForDay(day); // Method to get date string for the day
                 displayEventsForDate(date);
+            });
+
+            // Set up right-click event for showing context menu
+            ContextMenu contextMenu = new ContextMenu();
+
+            // Menu item for creating a new event
+            MenuItem createEventItem = new MenuItem("Create Event");
+            createEventItem.setOnAction(actionEvent -> {
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("makeEvent.fxml"));
+                    Parent root = loader.load();
+                    Stage stage = new Stage();
+                    stage.setTitle("Create Event");
+                    stage.setScene(new Scene(root, 482, 274)); // Adjust the size as needed
+                    stage.show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
+
+            // Menu item for editing an existing event
+            MenuItem editEventItem = new MenuItem("Edit Event");
+            editEventItem.setOnAction(actionEvent -> {
+                // Placeholder for edit event logic
+                System.out.println("Edit event option selected for day: " + day);
+            });
+
+            // Menu item for deleting an event
+            MenuItem deleteEventItem = new MenuItem("Delete Event");
+            deleteEventItem.setOnAction(actionEvent -> {
+                // Placeholder for delete event logic
+                System.out.println("Delete event option selected for day: " + day);
+            });
+
+            // Add menu items to the context menu
+            contextMenu.getItems().addAll(createEventItem, editEventItem, deleteEventItem);
+
+            // Show context menu on right-click
+            dayBox.setOnContextMenuRequested(event -> {
+                contextMenu.show(dayBox, event.getScreenX(), event.getScreenY());
             });
         }
     }
