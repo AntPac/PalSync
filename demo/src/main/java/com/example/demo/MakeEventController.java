@@ -55,16 +55,21 @@ public class MakeEventController implements Initializable {
                 String endTime = endTimeComboBox.getValue();
                 String note = noteField.getText();
 
+                // Create a new Event instance
+                Event newEvent = new Event(eventName, eventDate, startTime, endTime, note);
 
-                System.out.println("Event Saved:");
+                // Add the event to EventManager
+                EventManager.addEvent(newEvent);
+
+                System.out.println("Event saved to EventManager:");
                 System.out.println("Name: " + eventName);
                 System.out.println("Date: " + eventDate);
                 System.out.println("Start Time: " + startTime);
                 System.out.println("End Time: " + endTime);
                 System.out.println("Note: " + note);
-
             }
         });
+
 
         cancelButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override

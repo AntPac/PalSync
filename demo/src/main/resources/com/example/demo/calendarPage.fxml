@@ -27,7 +27,7 @@
                      <children>
                         <VBox layoutX="4.0" layoutY="6.0" prefHeight="364.0" prefWidth="166.0">
                            <children>
-                              <ListView prefHeight="362.0" prefWidth="166.0" />
+                              <ListView fx:id="eventListView" prefHeight="362.0" prefWidth="166.0" />
                            </children>
                         </VBox>
                      </children>
