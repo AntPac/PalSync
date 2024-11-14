@@ -21,8 +21,9 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class LoggedInController implements Initializable {
+    private String currentUsername;
     public void setUserInformation(String username){
-
+        this.currentUsername = username;
         //label_welcome.setText("Welcome " + username + "!");
     }
     // ListView to display events for the selected day
@@ -233,16 +234,7 @@ public class LoggedInController implements Initializable {
             // Menu item for creating a new event
             MenuItem createEventItem = new MenuItem("Create Event");
             createEventItem.setOnAction(actionEvent -> {
-                try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("makeEvent.fxml"));
-                    Parent root = loader.load();
-                    Stage stage = new Stage();
-                    stage.setTitle("Create Event");
-                    stage.setScene(new Scene(root, 482, 274)); // Adjust the size as needed
-                    stage.show();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                DBUtils.changeScene(actionEvent, "makeEvent.fxml", "Create New Event", currentUsername);
             });
 
             // Menu item for editing an existing event

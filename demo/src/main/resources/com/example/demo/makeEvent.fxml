@@ -30,28 +30,26 @@
             </HBox>
             <HBox alignment="TOP_CENTER" layoutX="10.0" layoutY="110.0" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <TextField />
+                  <TextField fx:id="eventNameField" />
                </children>
             </HBox>
             <HBox alignment="TOP_CENTER" layoutX="10.0" layoutY="210.0" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
                <children>
-                  <DatePicker prefHeight="30.0" prefWidth="150.0" promptText="Select a date" />
-                  <ComboBox prefHeight="30.0" prefWidth="150.0" promptText="Start time" />
-                  <ComboBox layoutX="185.0" layoutY="10.0" prefHeight="30.0" prefWidth="150.0" promptText="End Time"/>
+                  <DatePicker fx:id="eventDatePicker" prefHeight="30.0" prefWidth="150.0" promptText="Select a date" />
+                  <ComboBox fx:id="startTimeComboBox" prefHeight="30.0" prefWidth="150.0" promptText="Start time" />
+                  <ComboBox fx:id="endTimeComboBox" layoutX="185.0" layoutY="10.0" prefHeight="30.0" prefWidth="150.0" promptText="End Time"/>
                </children>
             </HBox>
             <HBox alignment="TOP_CENTER" layoutX="10.0" layoutY="310.0" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                <children>
                   <Label text="Note:" />
-                  <TextField prefHeight="25.0" prefWidth="339.0" />
+                  <TextField fx:id="noteField" prefHeight="25.0" prefWidth="339.0" />
                </children>
             </HBox>
             <HBox alignment="CENTER" layoutX="10.0" layoutY="330.0" prefHeight="100.0" prefWidth="396.0" spacing="30.0">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="71.0" text="Save" />
-                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="71.0" text="cancel"/>
-
-
+                  <Button fx:id="saveButton" mnemonicParsing="false" prefHeight="30.0" prefWidth="71.0" text="Save" />
+                  <Button fx:id="cancelButton" mnemonicParsing="false" prefHeight="30.0" prefWidth="71.0" text="Cancel" />
                </children>
             </HBox>
          </children>
