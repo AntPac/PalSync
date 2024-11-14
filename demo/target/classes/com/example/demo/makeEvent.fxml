@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="274.0" prefWidth="482.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.MakeEventController">
+   <children>
+      <ImageView fitHeight="321.0" fitWidth="482.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@greenBG.jpg" />
+         </image>
+      </ImageView>
+      <VBox layoutX="20.0" layoutY="21.0" prefHeight="247.0" prefWidth="436.0">
+         <children>
+            <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="New Event">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0" prefHeight="24.0" prefWidth="600.0">
+               <children>
+                  <Label text="Event Name" />
+               </children>
+            </HBox>
+            <HBox alignment="TOP_CENTER" layoutX="10.0" layoutY="110.0" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <TextField />
+               </children>
+            </HBox>
+            <HBox alignment="TOP_CENTER" layoutX="10.0" layoutY="210.0" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
+               <children>
+                  <DatePicker prefHeight="30.0" prefWidth="150.0" promptText="Select a date" />
+                  <ComboBox prefHeight="30.0" prefWidth="150.0" promptText="Start time" />
+                  <ComboBox layoutX="185.0" layoutY="10.0" prefHeight="30.0" prefWidth="150.0" promptText="End Time"/>
+               </children>
+            </HBox>
+            <HBox alignment="TOP_CENTER" layoutX="10.0" layoutY="310.0" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+               <children>
+                  <Label text="Note:" />
+                  <TextField prefHeight="25.0" prefWidth="339.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="10.0" layoutY="330.0" prefHeight="100.0" prefWidth="396.0" spacing="30.0">
+               <children>
+                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="71.0" text="Save" />
+                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="71.0" text="cancel"/>
+
+
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

@@ -7,7 +7,10 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
+import com.example.demo.MakeEventController;
+
 
 import java.sql.*;
 import java.io.IOException;
@@ -16,33 +19,39 @@ public class DBUtils {
 
     public static void changeScene(ActionEvent event, String fxmlFile, String title, String username) {
         Parent root = null;
+        try {
+            FXMLLoader loader = new FXMLLoader(DBUtils.class.getResource(fxmlFile));
+            root = loader.load();
 
-        if (username != null) {
-
-            try {
-                FXMLLoader loader = new FXMLLoader(DBUtils.class.getResource(fxmlFile));
-                root = loader.load();
-                LoggedInController loggedInController = loader.getController();
-                loggedInController.setUserInformation(username);
-            } catch (IOException e) {
-                e.printStackTrace();
+            // Check and set the controller if necessary
+            if (username != null) {
+                Object controller = loader.getController();
+                if (controller instanceof LoggedInController) {
+                    ((LoggedInController) controller).setUserInformation(username);
+                } else if (controller instanceof MakeEventController) {
+                    ((MakeEventController) controller).setUsername(username);
+                }
             }
 
-        } else {
-
-            try {
-                root = FXMLLoader.load(DBUtils.class.getResource(fxmlFile));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        // Get the stage properly
+        Stage stage;
+        if (event.getSource() instanceof Node) {
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        } else {
+            // This handles cases when the source is not a Node (like MenuItem)
+            stage = (Stage) ((MenuItem) event.getSource()).getParentPopup().getOwnerWindow();
+        }
+
         stage.setTitle(title);
-        stage.setScene(new Scene(root, 600, 400));
+        stage.setScene(new Scene(root, 600, 400)); // Adjust scene size if needed
         stage.show();
     }
+
+
 
     public static void signUpUser(ActionEvent event, String username, String password) {
 
@@ -52,7 +61,7 @@ public class DBUtils {
         ResultSet resultSet = null;
 
         try {
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/palsync-login", "root", "Silverlining1986");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/PalSyncDB", "root", "AugChico");
 
             psCheckUserExists = connection.prepareStatement("SELECT * FROM users WHERE username = ?");
             psCheckUserExists.setString(1, username);
@@ -69,7 +78,7 @@ public class DBUtils {
                 psInsert.setString(2, password);
                 psInsert.executeUpdate();
 
-                changeScene(event, "logged-in.fxml", "Welcome!", username);
+                changeScene(event, "calendarPage.fxml", "Welcome!", username);
 
             }
         } catch (SQLException e) {
@@ -120,7 +129,8 @@ public class DBUtils {
         ResultSet resultSet = null;
 
         try {
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/palsync-login", "root", "Silverlining1986");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/PalSyncDB", "root", "AugChico");
+
             preparedStatement = connection.prepareStatement("SELECT password FROM users WHERE username = ?");
             preparedStatement.setString(1, username);
             resultSet = preparedStatement.executeQuery();
@@ -139,7 +149,7 @@ public class DBUtils {
                     String retrievedPassword = resultSet.getString("password");
 
                     if (retrievedPassword.equals(password)) {
-                        changeScene(event, "logged-in.fxml", "Welcome!", username);
+                        changeScene(event, "calendarPage.fxml", "Welcome!", username);
                     } else {
                         System.out.println("Passwords don't match!");
                         Alert alert = new Alert(Alert.AlertType.ERROR);
