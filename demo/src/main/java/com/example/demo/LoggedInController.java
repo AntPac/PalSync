@@ -5,11 +5,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import java.time.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -63,9 +66,66 @@ public class LoggedInController implements Initializable {
     @FXML private VBox vbox32;
     @FXML private VBox vbox33;
     @FXML private VBox vbox34;
+    @FXML private VBox vbox35;
+    @FXML private VBox vbox36;
+    @FXML private VBox vbox37;
+    @FXML private VBox vbox38;
+    @FXML private VBox vbox39;
+    @FXML private VBox vbox40;
+    @FXML private VBox vbox41;
+
+    @FXML private Text Text0;
+    @FXML private Text Text1;
+    @FXML private Text Text2;
+    @FXML private Text Text3;
+    @FXML private Text Text4;
+    @FXML private Text Text5;
+    @FXML private Text Text6;
+    @FXML private Text Text7;
+    @FXML private Text Text8;
+    @FXML private Text Text9;
+    @FXML private Text Text10;
+    @FXML private Text Text11;
+    @FXML private Text Text12;
+    @FXML private Text Text13;
+    @FXML private Text Text14;
+    @FXML private Text Text15;
+    @FXML private Text Text16;
+    @FXML private Text Text17;
+    @FXML private Text Text18;
+    @FXML private Text Text19;
+    @FXML private Text Text20;
+    @FXML private Text Text21;
+    @FXML private Text Text22;
+    @FXML private Text Text23;
+    @FXML private Text Text24;
+    @FXML private Text Text25;
+    @FXML private Text Text26;
+    @FXML private Text Text27;
+    @FXML private Text Text28;
+    @FXML private Text Text29;
+    @FXML private Text Text30;
+    @FXML private Text Text31;
+    @FXML private Text Text32;
+    @FXML private Text Text33;
+    @FXML private Text Text34;
+    @FXML private Text Text35;
+    @FXML private Text Text36;
+    @FXML private Text Text37;
+    @FXML private Text Text38;
+    @FXML private Text Text39;
+    @FXML private Text Text40;
+    @FXML private Text Text41;
+    @FXML private Text TextMonth;
+
+    @FXML private Button Next;
+    @FXML private Button Prev;
 
     // List to hold all vBoxes for easy access
     private List<VBox> dayBoxes = new ArrayList<>();
+    private List<Text> TextBoxes = new ArrayList<>();
+    private CalendarSetup show = new CalendarSetup();
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -105,6 +165,57 @@ public class LoggedInController implements Initializable {
         dayBoxes.add(vbox32);
         dayBoxes.add(vbox33);
         dayBoxes.add(vbox34);
+        dayBoxes.add(vbox35);
+        dayBoxes.add(vbox36);
+        dayBoxes.add(vbox37);
+        dayBoxes.add(vbox38);
+        dayBoxes.add(vbox39);
+        dayBoxes.add(vbox40);
+        dayBoxes.add(vbox41);
+
+        TextBoxes.add(Text0);
+        TextBoxes.add(Text1);
+        TextBoxes.add(Text2);
+        TextBoxes.add(Text3);
+        TextBoxes.add(Text4);
+        TextBoxes.add(Text5);
+        TextBoxes.add(Text6);
+        TextBoxes.add(Text7);
+        TextBoxes.add(Text8);
+        TextBoxes.add(Text9);
+        TextBoxes.add(Text10);
+        TextBoxes.add(Text11);
+        TextBoxes.add(Text12);
+        TextBoxes.add(Text13);
+        TextBoxes.add(Text14);
+        TextBoxes.add(Text15);
+        TextBoxes.add(Text16);
+        TextBoxes.add(Text17);
+        TextBoxes.add(Text18);
+        TextBoxes.add(Text19);
+        TextBoxes.add(Text20);
+        TextBoxes.add(Text21);
+        TextBoxes.add(Text22);
+        TextBoxes.add(Text23);
+        TextBoxes.add(Text24);
+        TextBoxes.add(Text25);
+        TextBoxes.add(Text26);
+        TextBoxes.add(Text27);
+        TextBoxes.add(Text28);
+        TextBoxes.add(Text29);
+        TextBoxes.add(Text30);
+        TextBoxes.add(Text31);
+        TextBoxes.add(Text32);
+        TextBoxes.add(Text33);
+        TextBoxes.add(Text34);
+        TextBoxes.add(Text35);
+        TextBoxes.add(Text36);
+        TextBoxes.add(Text37);
+        TextBoxes.add(Text38);
+        TextBoxes.add(Text39);
+        TextBoxes.add(Text40);
+        TextBoxes.add(Text41);
+
 
 
         // Initialize each day box with a click handler
@@ -148,6 +259,19 @@ public class LoggedInController implements Initializable {
                 contextMenu.show(dayBox, event.getScreenX(), event.getScreenY());
             });
         }
+
+        CalendarSetup now = new CalendarSetup();
+        now.calendarMonth();
+        setDays(now);
+
+        Next.setOnMouseClicked(event -> {
+            show.changeMonth(true);
+            setDays(show);
+        });
+        Prev.setOnMouseClicked(event -> {
+            show.changeMonth(false);
+            setDays(show);
+        });
     }
 
     // Method to format a date string for each day
@@ -170,4 +294,21 @@ public class LoggedInController implements Initializable {
             }
         }
     }
+
+    private void setDays(CalendarSetup display) {
+        LocalDate current = display.getCurrentDate();
+        Object[][] cal = display.getCalendar();
+
+        TextMonth.setText(current.getMonth().toString());
+        int i = 0;
+        for (int j = 0; j < cal.length; j++) {
+            for (int k = 0; k < cal[j].length; k++) {
+                if (i < TextBoxes.size()) {
+                    TextBoxes.get(i).setText(cal[j][k].toString());
+                    i++;
+                }
+            }
+        }
+    }
+
 }
