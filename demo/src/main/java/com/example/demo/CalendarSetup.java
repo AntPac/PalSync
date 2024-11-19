@@ -22,22 +22,34 @@ public class CalendarSetup {
     }
 
     public void calendarMonth() {
-        blank();
-        LocalDate ld = currentDate.withDayOfMonth(1);
-        int day = ld.getDayOfWeek().getValue() % 7;
-        int days = ld.lengthOfMonth();
-        int k = 1;
-        for (int j = 0; j < Calendar.length; j++) {
-            for (int l = 0; l < Calendar[j].length && k <= days; l++) {
-                if (j == 0 && l < day) {
+        blank(); // Clear the calendar grid
+        LocalDate firstDayOfMonth = currentDate.withDayOfMonth(1); // Get the first day of the current month
+
+        // Adjust for Sunday-start week (Sunday = 0, Monday = 1, etc.)
+        int startDayOfWeek = (firstDayOfMonth.getDayOfWeek().getValue() % 7); // Convert Monday=1 to Sunday=0
+        int daysInMonth = firstDayOfMonth.lengthOfMonth(); // Number of days in the month
+
+        int dayCounter = 1; // Start from the first day of the month
+
+        for (int row = 0; row < Calendar.length; row++) {
+            for (int col = 0; col < Calendar[row].length; col++) {
+                // Skip cells before the first day of the month
+                if (row == 0 && col < startDayOfWeek) {
+                    Calendar[row][col] = " "; // Fill with empty space
                     continue;
                 }
-                if (k <= days) {
-                    Calendar[j][l] = k++;
+
+                // Assign day numbers until the month ends
+                if (dayCounter <= daysInMonth) {
+                    Calendar[row][col] = dayCounter++;
+                } else {
+                    Calendar[row][col] = " "; // Fill remaining cells with empty space
                 }
             }
         }
     }
+
+
 
     public void changeMonth(boolean change) {
         if (change) {
@@ -82,10 +94,20 @@ public class CalendarSetup {
         }
     }
 
+    public void printCalendarMatrix() {
+        System.out.println("Calendar Matrix:");
+        for (Object[] row : Calendar) {
+            for (Object cell : row) {
+                System.out.print((cell == null ? "null" : cell.toString()) + "\t");
+            }
+            System.out.println();
+        }
+    }
 
     public static void main(String[] args) {
         CalendarSetup today = new CalendarSetup();
         today.calendarMonth();
+        today.printCalendarMatrix();
         today.printMatrix();
         today.changeMonth(true);
         today.printMatrix();
