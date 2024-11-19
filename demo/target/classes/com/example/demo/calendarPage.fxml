@@ -49,11 +49,16 @@
                           <MenuItem mnemonicParsing="false" text="Close" />
                         </items>
                       </Menu>
-                      <Menu mnemonicParsing="false" text="View">
+                      <Menu mnemonicParsing="false" text="Events">
                         <items>
                           <MenuItem mnemonicParsing="false" text="About" />
                         </items>
                       </Menu>
+                        <Menu mnemonicParsing="false" text="Exit">
+                           <items>
+                              <MenuItem mnemonicParsing="false" text="About" />
+                           </items>
+                        </Menu>
                     </menus>
                   </MenuBar>
                </children>
@@ -68,14 +73,14 @@
             </ImageView>
             <AnchorPane layoutX="-1.0" layoutY="3.0">
                <children>
-                  <Button fx:id="Prev" layoutY="2.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-font-weight: bold;" text="&lt;" textAlignment="CENTER">
+                  <Button fx:id="Prev" layoutX="-4.0" layoutY="-5.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-font-weight: bold; -fx-padding: 10;" text="&lt;" textAlignment="CENTER" textFill="#398144">
                      <font>
-                        <Font size="18.0" />
+                        <Font name="Yu Gothic UI Light" size="16.0" />
                      </font>
                   </Button>
-                  <Text fx:id="TextMonth" layoutX="45.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Month" textAlignment="CENTER" wrappingWidth="323.1652145385742">
+                  <Text fx:id="TextMonth" fill="WHITE" layoutX="47.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Month" textAlignment="CENTER" wrappingWidth="323.1652145385742">
                      <font>
-                        <Font size="32.0" />
+                        <Font name="Yu Gothic UI Semilight" size="32.0" />
                      </font>
                   </Text>
                </children>
@@ -128,190 +133,316 @@
                      <children>
                         <Label alignment="CENTER" prefHeight="51.0" prefWidth="82.0" text="Sat" textFill="WHITE" />
                      </children></VBox>
-                  <VBox fx:id="vbox0" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
+                  <VBox fx:id="vbox0" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
                      <children>
-                        <Text fx:id="Text0" strokeType="OUTSIDE" strokeWidth="0.0" />
+                        <Text fx:id="Text0" strokeType="OUTSIDE" strokeWidth="0.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Text>
                      </children></VBox>
-                  <VBox fx:id="vbox1" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <VBox fx:id="vbox1" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <children>
-                        <Text fx:id="Text1" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" />
+                        <Text fx:id="Text1" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Text>
                      </children></VBox>
-                  <VBox fx:id="vbox2" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                  <VBox fx:id="vbox2" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                      <children>
-                        <Text fx:id="Text2" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" />
+                        <Text fx:id="Text2" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Text>
                      </children></VBox>
-                  <VBox fx:id="vbox3" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                  <VBox fx:id="vbox3" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
                      <children>
-                        <Text fx:id="Text3" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" />
+                        <Text fx:id="Text3" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Text>
                      </children></VBox>
-                  <VBox fx:id="vbox4" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                  <VBox fx:id="vbox4" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
                      <children>
-                        <Text fx:id="Text4" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" />
+                        <Text fx:id="Text4" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Text>
                      </children></VBox>
-                  <VBox fx:id="vbox5" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="5" GridPane.rowIndex="1">
+                  <VBox fx:id="vbox5" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="5" GridPane.rowIndex="1">
                      <children>
-                        <Text fx:id="Text5" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" />
+                        <Text fx:id="Text5" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Text>
                      </children></VBox>
-                  <VBox fx:id="vbox6" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="6" GridPane.rowIndex="1">
+                  <VBox fx:id="vbox6" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="6" GridPane.rowIndex="1">
                      <children>
-                        <Text fx:id="Text6" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" />
+                        <Text fx:id="Text6" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Text>
                      </children></VBox>
-                  <VBox fx:id="vbox7" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="2">
+                  <VBox fx:id="vbox7" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="2">
                      <children>
-                        <Text fx:id="Text7" strokeType="OUTSIDE" strokeWidth="0.0" />
+                        <Text fx:id="Text7" strokeType="OUTSIDE" strokeWidth="0.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Text>
                      </children></VBox>
-                  <VBox fx:id="vbox8" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <VBox fx:id="vbox8" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <children>
-                        <Text fx:id="Text8" strokeType="OUTSIDE" strokeWidth="0.0" />
+                        <Text fx:id="Text8" strokeType="OUTSIDE" strokeWidth="0.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Text>
                      </children></VBox>
-                  <VBox fx:id="vbox9" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                  <VBox fx:id="vbox9" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
                      <children>
-                        <Text fx:id="Text9" strokeType="OUTSIDE" strokeWidth="0.0" />
+                        <Text fx:id="Text9" strokeType="OUTSIDE" strokeWidth="0.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Text>
                      </children></VBox>
-                  <VBox fx:id="vbox10" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                  <VBox fx:id="vbox10" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
                      <children>
-                        <Text fx:id="Text10" strokeType="OUTSIDE" strokeWidth="0.0" />
+                        <Text fx:id="Text10" strokeType="OUTSIDE" strokeWidth="0.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Text>
                      </children></VBox>
-                  <VBox fx:id="vbox11" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                  <VBox fx:id="vbox11" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="2">
                      <children>
-                        <Text fx:id="Text11" strokeType="OUTSIDE" strokeWidth="0.0" />
+                        <Text fx:id="Text11" strokeType="OUTSIDE" strokeWidth="0.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Text>
                      </children></VBox>
-                  <VBox fx:id="vbox12" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="5" GridPane.rowIndex="2">
+                  <VBox fx:id="vbox12" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="5" GridPane.rowIndex="2">
                      <children>
-                        <Text fx:id="Text12" strokeType="OUTSIDE" strokeWidth="0.0" />
+                        <Text fx:id="Text12" strokeType="OUTSIDE" strokeWidth="0.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Text>
                      </children></VBox>
-                  <VBox fx:id="vbox13" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="6" GridPane.rowIndex="2">
+                  <VBox fx:id="vbox13" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="6" GridPane.rowIndex="2">
                      <children>
-                        <Text fx:id="Text13" strokeType="OUTSIDE" strokeWidth="0.0" />
+                        <Text fx:id="Text13" strokeType="OUTSIDE" strokeWidth="0.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Text>
                      </children></VBox>
-                  <VBox fx:id="vbox14" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="3">
+                  <VBox fx:id="vbox14" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="3">
                      <children>
-                        <Text fx:id="Text14" strokeType="OUTSIDE" strokeWidth="0.0" />
+                        <Text fx:id="Text14" strokeType="OUTSIDE" strokeWidth="0.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Text>
                      </children></VBox>
-                  <VBox fx:id="vbox15" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                  <VBox fx:id="vbox15" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <children>
-                        <Text fx:id="Text15" strokeType="OUTSIDE" strokeWidth="0.0" />
+                        <Text fx:id="Text15" strokeType="OUTSIDE" strokeWidth="0.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Text>
                      </children></VBox>
-                  <VBox fx:id="vbox16" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                  <VBox fx:id="vbox16" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
                      <children>
-                        <Text fx:id="Text16" strokeType="OUTSIDE" strokeWidth="0.0" />
+                        <Text fx:id="Text16" strokeType="OUTSIDE" strokeWidth="0.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Text>
                      </children></VBox>
-                  <VBox fx:id="vbox17" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                  <VBox fx:id="vbox17" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="3">
                      <children>
-                        <Text fx:id="Text17" strokeType="OUTSIDE" strokeWidth="0.0" />
+                        <Text fx:id="Text17" strokeType="OUTSIDE" strokeWidth="0.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Text>
                      </children></VBox>
-                  <VBox fx:id="vbox18" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="3">
+                  <VBox fx:id="vbox18" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="3">
                      <children>
-                        <Text fx:id="Text18" strokeType="OUTSIDE" strokeWidth="0.0" />
+                        <Text fx:id="Text18" strokeType="OUTSIDE" strokeWidth="0.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Text>
                      </children></VBox>
-                  <VBox fx:id="vbox19" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="5" GridPane.rowIndex="3">
+                  <VBox fx:id="vbox19" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="5" GridPane.rowIndex="3">
                      <children>
-                        <Text fx:id="Text19" strokeType="OUTSIDE" strokeWidth="0.0" />
+                        <Text fx:id="Text19" strokeType="OUTSIDE" strokeWidth="0.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Text>
                      </children></VBox>
-                  <VBox fx:id="vbox20" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="6" GridPane.rowIndex="3">
+                  <VBox fx:id="vbox20" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="6" GridPane.rowIndex="3">
                      <children>
-                        <Text fx:id="Text20" strokeType="OUTSIDE" strokeWidth="0.0" />
+                        <Text fx:id="Text20" strokeType="OUTSIDE" strokeWidth="0.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Text>
                      </children></VBox>
-                  <VBox fx:id="vbox21" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="4">
+                  <VBox fx:id="vbox21" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="4">
                      <children>
-                        <Text fx:id="Text21" strokeType="OUTSIDE" strokeWidth="0.0" />
+                        <Text fx:id="Text21" strokeType="OUTSIDE" strokeWidth="0.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Text>
                      </children></VBox>
-                  <VBox fx:id="vbox22" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                  <VBox fx:id="vbox22" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                      <children>
-                        <Text fx:id="Text22" strokeType="OUTSIDE" strokeWidth="0.0" />
+                        <Text fx:id="Text22" strokeType="OUTSIDE" strokeWidth="0.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Text>
                      </children></VBox>
-                  <VBox fx:id="vbox23" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                  <VBox fx:id="vbox23" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
                      <children>
-                        <Text fx:id="Text23" strokeType="OUTSIDE" strokeWidth="0.0" />
+                        <Text fx:id="Text23" strokeType="OUTSIDE" strokeWidth="0.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Text>
                      </children></VBox>
-                  <VBox fx:id="vbox24" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                  <VBox fx:id="vbox24" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="4">
                      <children>
-                        <Text fx:id="Text24" strokeType="OUTSIDE" strokeWidth="0.0" />
+                        <Text fx:id="Text24" strokeType="OUTSIDE" strokeWidth="0.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Text>
                      </children></VBox>
-                  <VBox fx:id="vbox25" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="4">
+                  <VBox fx:id="vbox25" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="4">
                      <children>
-                        <Text fx:id="Text25" strokeType="OUTSIDE" strokeWidth="0.0" />
+                        <Text fx:id="Text25" strokeType="OUTSIDE" strokeWidth="0.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Text>
                      </children></VBox>
-                  <VBox fx:id="vbox26" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="5" GridPane.rowIndex="4">
+                  <VBox fx:id="vbox26" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="5" GridPane.rowIndex="4">
                      <children>
-                        <Text fx:id="Text26" strokeType="OUTSIDE" strokeWidth="0.0" />
+                        <Text fx:id="Text26" strokeType="OUTSIDE" strokeWidth="0.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Text>
                      </children></VBox>
-                  <VBox fx:id="vbox27" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="6" GridPane.rowIndex="4">
+                  <VBox fx:id="vbox27" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="6" GridPane.rowIndex="4">
                      <children>
-                        <Text fx:id="Text27" strokeType="OUTSIDE" strokeWidth="0.0" />
+                        <Text fx:id="Text27" strokeType="OUTSIDE" strokeWidth="0.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Text>
                      </children></VBox>
-                  <VBox fx:id="vbox28" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="5">
+                  <VBox fx:id="vbox28" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="5">
                      <children>
-                        <Text fx:id="Text28" strokeType="OUTSIDE" strokeWidth="0.0" />
+                        <Text fx:id="Text28" strokeType="OUTSIDE" strokeWidth="0.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Text>
                      </children></VBox>
-                  <VBox fx:id="vbox29" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                  <VBox fx:id="vbox29" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                      <children>
-                        <Text fx:id="Text29" strokeType="OUTSIDE" strokeWidth="0.0" />
+                        <Text fx:id="Text29" strokeType="OUTSIDE" strokeWidth="0.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Text>
                      </children></VBox>
-                  <VBox fx:id="vbox30" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                  <VBox fx:id="vbox30" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
                      <children>
-                        <Text fx:id="Text30" strokeType="OUTSIDE" strokeWidth="0.0" />
+                        <Text fx:id="Text30" strokeType="OUTSIDE" strokeWidth="0.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Text>
                      </children></VBox>
-                  <VBox fx:id="vbox31" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="5">
+                  <VBox fx:id="vbox31" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="5">
                      <children>
-                        <Text fx:id="Text31" strokeType="OUTSIDE" strokeWidth="0.0" />
+                        <Text fx:id="Text31" strokeType="OUTSIDE" strokeWidth="0.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Text>
                      </children></VBox>
-                  <VBox fx:id="vbox32" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="5">
+                  <VBox fx:id="vbox32" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="5">
                      <children>
-                        <Text fx:id="Text32" strokeType="OUTSIDE" strokeWidth="0.0" />
+                        <Text fx:id="Text32" strokeType="OUTSIDE" strokeWidth="0.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Text>
                      </children></VBox>
-                  <VBox fx:id="vbox33" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="5" GridPane.rowIndex="5">
+                  <VBox fx:id="vbox33" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="5" GridPane.rowIndex="5">
                      <children>
-                        <Text fx:id="Text33" strokeType="OUTSIDE" strokeWidth="0.0" />
+                        <Text fx:id="Text33" strokeType="OUTSIDE" strokeWidth="0.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Text>
                      </children></VBox>
-                  <VBox fx:id="vbox34" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="6" GridPane.rowIndex="5">
+                  <VBox fx:id="vbox34" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="6" GridPane.rowIndex="5">
                      <children>
-                        <Text fx:id="Text34" strokeType="OUTSIDE" strokeWidth="0.0" />
+                        <Text fx:id="Text34" strokeType="OUTSIDE" strokeWidth="0.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Text>
                      </children></VBox>
                   <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #595959;" GridPane.columnIndex="4">
                      <children>
                         <Label alignment="CENTER" prefHeight="49.0" prefWidth="87.0" text="Thur" textFill="WHITE" />
                      </children></VBox>
-                  <VBox fx:id="vbox35" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="6">
+                  <VBox fx:id="vbox35" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="6">
                      <children>
-                        <Text fx:id="Text35" strokeType="OUTSIDE" strokeWidth="0.0" />
+                        <Text fx:id="Text35" strokeType="OUTSIDE" strokeWidth="0.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Text>
                      </children>
                   </VBox>
-                  <VBox fx:id="vbox36" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                  <VBox fx:id="vbox36" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
                      <children>
-                        <Text fx:id="Text36" strokeType="OUTSIDE" strokeWidth="0.0" />
+                        <Text fx:id="Text36" strokeType="OUTSIDE" strokeWidth="0.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Text>
                      </children>
                   </VBox>
-                  <VBox fx:id="vbox37" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="6">
+                  <VBox fx:id="vbox37" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="6">
                      <children>
-                        <Text fx:id="Text37" strokeType="OUTSIDE" strokeWidth="0.0" />
+                        <Text fx:id="Text37" strokeType="OUTSIDE" strokeWidth="0.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Text>
                      </children>
                   </VBox>
-                  <VBox fx:id="vbox38" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="6">
+                  <VBox fx:id="vbox38" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="6">
                      <children>
-                        <Text fx:id="Text38" strokeType="OUTSIDE" strokeWidth="0.0" />
+                        <Text fx:id="Text38" strokeType="OUTSIDE" strokeWidth="0.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Text>
                      </children>
                   </VBox>
-                  <VBox fx:id="vbox39" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="6">
+                  <VBox fx:id="vbox39" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="6">
                      <children>
-                        <Text fx:id="Text39" strokeType="OUTSIDE" strokeWidth="0.0" />
+                        <Text fx:id="Text39" strokeType="OUTSIDE" strokeWidth="0.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Text>
                      </children>
                   </VBox>
-                  <VBox fx:id="vbox40" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="5" GridPane.rowIndex="6">
+                  <VBox fx:id="vbox40" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="5" GridPane.rowIndex="6">
                      <children>
-                        <Text fx:id="Text40" strokeType="OUTSIDE" strokeWidth="0.0" />
+                        <Text fx:id="Text40" strokeType="OUTSIDE" strokeWidth="0.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Text>
                      </children>
                   </VBox>
-                  <VBox fx:id="vbox41" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="6" GridPane.rowIndex="6">
+                  <VBox fx:id="vbox41" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="6" GridPane.rowIndex="6">
                      <children>
-                        <Text fx:id="Text41" strokeType="OUTSIDE" strokeWidth="0.0" />
+                        <Text fx:id="Text41" strokeType="OUTSIDE" strokeWidth="0.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Text>
                      </children>
                   </VBox>
                </children>
             </GridPane>
-            <Button fx:id="Next" layoutX="385.0" layoutY="5.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-font-weight: bold;" text="&gt;" textAlignment="CENTER">
+            <Button fx:id="Next" layoutX="387.0" layoutY="-3.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-font-weight: bold; -fx-padding: 10;" text="&gt;" textAlignment="CENTER" textFill="#398144">
                <font>
-                  <Font size="18.0" />
+                  <Font name="Yu Gothic UI Semibold" size="16.0" />
                </font>
             </Button>
          </children></AnchorPane>

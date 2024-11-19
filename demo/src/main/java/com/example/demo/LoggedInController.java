@@ -304,7 +304,7 @@ public class LoggedInController implements Initializable {
         for (int j = 0; j < cal.length; j++) {
             for (int k = 0; k < cal[j].length; k++) {
                 if (i < TextBoxes.size()) {
-                    TextBoxes.get(i).setText(cal[j][k].toString());
+                    TextBoxes.get(i).setText(" "+ cal[j][k].toString());
                     i++;
                 }
             }
