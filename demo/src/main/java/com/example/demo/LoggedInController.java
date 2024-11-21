@@ -210,7 +210,7 @@ public class LoggedInController implements Initializable {
             eventListView.getItems().add("No events available.");
         } else {
             for (Event event : events) {
-                String eventDetails = String.format("%s (%s - %s)", event.getName(), event.getStartTime(), event.getEndTime());
+                String eventDetails = String.format("%s \n%s - %s \n%s", event.getName(), event.getStartTime(), event.getEndTime(), event.getNote());
                 eventListView.getItems().add(eventDetails);
 
 
