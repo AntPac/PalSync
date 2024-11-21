@@ -1,5 +1,6 @@
 package com.example.demo;
 
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,16 +13,21 @@ import javafx.stage.Stage;
 import com.example.demo.MakeEventController;
 
 
+
+
 import java.sql.*;
 import java.io.IOException;
 
+
 public class DBUtils {
+
 
     public static void changeScene(ActionEvent event, String fxmlFile, String title, String username) {
         Parent root = null;
         try {
             FXMLLoader loader = new FXMLLoader(DBUtils.class.getResource(fxmlFile));
             root = loader.load();
+
 
             // Check and set the controller if necessary
             if (username != null) {
@@ -33,9 +39,11 @@ public class DBUtils {
                 }
             }
 
+
         } catch (IOException e) {
             e.printStackTrace();
         }
+
 
         // Get the stage properly
         Stage stage;
@@ -46,6 +54,7 @@ public class DBUtils {
             stage = (Stage) ((MenuItem) event.getSource()).getParentPopup().getOwnerWindow();
         }
 
+
         stage.setTitle(title);
         stage.setScene(new Scene(root, 600, 400)); // Adjust scene size if needed
         stage.show();
@@ -53,20 +62,28 @@ public class DBUtils {
 
 
 
+
+
+
     public static void signUpUser(ActionEvent event, String username, String password) {
+
 
         Connection connection = null;
         PreparedStatement psInsert = null;
         PreparedStatement psCheckUserExists = null;
         ResultSet resultSet = null;
 
+
         try {
 
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/SQLname", "root", "password");
+
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/me", "root", "Password1");
+
 
             psCheckUserExists = connection.prepareStatement("SELECT * FROM users WHERE username = ?");
             psCheckUserExists.setString(1, username);
             resultSet = psCheckUserExists.executeQuery();
+
 
             if (resultSet.isBeforeFirst()) {
                 System.out.println("User already exists!");
@@ -79,16 +96,21 @@ public class DBUtils {
                 psInsert.setString(2, password);
                 psInsert.executeUpdate();
 
+
                 changeScene(event, "calendarPage.fxml", "Welcome!", username);
+
 
             }
         } catch (SQLException e) {
             e.printStackTrace();
 
+
         } finally {
+
 
             // Used to free up resources once action is finished.
             // We will close all previous vars from above.
+
 
             if (resultSet != null) {
                 try {
@@ -98,6 +120,7 @@ public class DBUtils {
                 }
             }
 
+
             if (psCheckUserExists != null) {
                 try {
                     psCheckUserExists.close();
@@ -106,6 +129,7 @@ public class DBUtils {
                 }
             }
 
+
             if (psInsert != null) {
                 try {
                     psInsert.close();
@@ -113,6 +137,7 @@ public class DBUtils {
                     e.printStackTrace();
                 }
             }
+
 
             if (connection != null) {
                 try {
@@ -124,18 +149,21 @@ public class DBUtils {
         }
     }
 
+
     public static void logInUser(ActionEvent event, String username, String password) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
 
+
         try {
 
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/SQLname", "root", "password");
 
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/me", "root", "Password1");
             preparedStatement = connection.prepareStatement("SELECT password FROM users WHERE username = ?");
             preparedStatement.setString(1, username);
             resultSet = preparedStatement.executeQuery();
+
 
             if (!resultSet.isBeforeFirst()) {
                 System.out.println("User not found in database.");
@@ -144,11 +172,14 @@ public class DBUtils {
                 alert.show();
             } else {
 
+
                 // Loop that iterates through our database checking to see if we
                 // have a password that matches with a username.
 
+
                 while (resultSet.next()) {
                     String retrievedPassword = resultSet.getString("password");
+
 
                     if (retrievedPassword.equals(password)) {
                         changeScene(event, "calendarPage.fxml", "Welcome!", username);
@@ -163,7 +194,9 @@ public class DBUtils {
         } catch (SQLException e) {
             e.printStackTrace();
 
+
         } finally {
+
 
             if (resultSet != null) {
                 try {
@@ -173,6 +206,7 @@ public class DBUtils {
                 }
             }
 
+
             if (preparedStatement != null) {
                 try {
                     preparedStatement.close();
@@ -180,6 +214,7 @@ public class DBUtils {
                     e.printStackTrace();
                 }
             }
+
 
             if (connection != null) {
                 try {
@@ -189,10 +224,16 @@ public class DBUtils {
                 }
             }
 
+
         }
+
 
     }
 }
+
+
+
+
 
 
 
