@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
@@ -28,14 +31,47 @@
                      <children>
                         <VBox layoutX="4.0" layoutY="6.0" prefHeight="364.0" prefWidth="166.0">
                            <children>
-                              <ListView fx:id="eventListView" prefHeight="362.0" prefWidth="166.0" />
+                                 <SplitPane orientation="HORIZONTAL" xmlns:fx="http://javafx.com/fxml/1">
+                                    <!-- Left Section -->
+                                    <AnchorPane>
+                                       <!-- Event Creation Section -->
+                                       <VBox fx:id="eventCreationVBox" alignment="TOP_LEFT" prefHeight="364.0" prefWidth="164.0" spacing="15" style="-fx-padding: 20;" AnchorPane.bottomAnchor="-51.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                          <Label text="Title" />
+                                          <TextField fx:id="eventTitleField" promptText="Enter event title" />
+
+                                          <HBox alignment="CENTER_LEFT" spacing="10">
+                                             <Label text="All Day" />
+                                             <CheckBox fx:id="allDayToggle" />
+                                          </HBox>
+
+                                          <Label text="Start Date and Time" />
+                                          <HBox alignment="CENTER_LEFT" spacing="10">
+                                             <DatePicker fx:id="startDatePicker" style="-fx-pref-width: 150;" />
+                                             <Spinner fx:id="startTimeHour" initialValue="8" max="23" min="0" style="-fx-pref-width: 60;" />
+                                             <Label text=":" />
+                                             <Spinner fx:id="startTimeMinute" initialValue="0" max="59" min="0" style="-fx-pref-width: 60;" />
+                                          </HBox>
+
+                                          <Label text="End Date and Time" />
+                                          <HBox alignment="CENTER_LEFT" spacing="10">
+                                             <DatePicker fx:id="endDatePicker" style="-fx-pref-width: 150;" />
+                                             <Spinner fx:id="endTimeHour" initialValue="9" max="23" min="0" style="-fx-pref-width: 60;" />
+                                             <Label text=":" />
+                                             <Spinner fx:id="endTimeMinute" initialValue="0" max="59" min="0" style="-fx-pref-width: 60;" />
+                                          </HBox>
+
+                                          <HBox alignment="CENTER_RIGHT" spacing="10">
+                                             <Button fx:id="saveButton" text="Save" />
+                                             <Button fx:id="cancelButton" text="Cancel" />
+                                          </HBox>
+                                       </VBox>
+                                    </AnchorPane>
+
+
+                              </SplitPane>
+
                            </children>
                         </VBox>
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                     <children>
-                        <VBox prefHeight="374.0" prefWidth="175.0" />
                      </children>
                   </AnchorPane>
                </children>
@@ -44,21 +80,9 @@
                <children>
                   <MenuBar prefHeight="25.0" prefWidth="42.0">
                     <menus>
-                      <Menu mnemonicParsing="false" text="Create">
-                        <items>
-                          <MenuItem mnemonicParsing="false" text="Close" />
-                        </items>
-                      </Menu>
-                      <Menu mnemonicParsing="false" text="Events">
-                        <items>
-                          <MenuItem mnemonicParsing="false" text="About" />
-                        </items>
-                      </Menu>
-                        <Menu mnemonicParsing="false" text="Exit">
-                           <items>
-                              <MenuItem mnemonicParsing="false" text="About" />
-                           </items>
-                        </Menu>
+                      <Menu mnemonicParsing="false" text="Create" />
+                      <Menu mnemonicParsing="false" text="Events" />
+                        <Menu mnemonicParsing="false" text="Exit" />
                     </menus>
                   </MenuBar>
                </children>
