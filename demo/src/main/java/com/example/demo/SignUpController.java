@@ -1,5 +1,14 @@
 package com.example.demo;
+/*
+a) SignUpController
+b) Creation Date: September 30 2024
+c) Programmer’s Name: Sky Dalangin
+d) Purpose: Handles user registration process.
+e) Role: Ensures the user input is valid before storing account information into the SQL database. Two methods are used: initialize() prompts the user to input information to be sent to SQL and is also responsible for denying a user registration if information is not complete. handle() simply changes the scene.
+f) Data Structures: None
+g) Algorithms: None
 
+ */
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;

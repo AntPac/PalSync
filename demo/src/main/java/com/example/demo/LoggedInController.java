@@ -1,5 +1,15 @@
 package com.example.demo;
-
+/*
+a) LoggedInController
+b) Creation Date: September 30 2024
+c) Programmer’s Name: Anthony Pacheco, Mohy Elhelw, Javier Pulido
+d) Purpose: Controls the behavior of the homepage after successful user authentication. Initialize() is what creates the setup of the calendar itself, that being what days the dates fall on and how many days in the specific month itself. getDateForDay() formats the date string for each day. displayEventsForDate() Displays the events when a date is selected in a list view on the left hand side. setDays() uses the calendar Setup class to organize and display the proper dates in the GUIcalendar.
+e) Role: Fetches and displays user-specific data such as events.
+f) Data Structures: Array List
+g) Algorithms: SetDays() creates a calendar object then calls the calendarMonth method to create a display of the current class. It then uses the textbox arraylist to equal each index to its counterpart on the GUI and display the proper month
+displayEventsForDay() checks the sql for event data on a specifically selected dat then presents it on the side event view of the day has set events
+getDateForEvents()  Uses the calendarSetup class to find the specific date of the day selected and returns the date
+ */
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;

@@ -4,6 +4,19 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+/*
+a) Main
+b) Creation Date: September 30, 2024
+Modification Dates:
+October 1, 2024
+October 21, 2024
+c) Programmer: Sky Dalangin
+d) Purpose: Is the entry point of this program.
+e) Role: Initializes the program and the main application
+f) Data Structures: None
+g) Algorithms: None
+
+*/
 
 public class Main extends Application{
 

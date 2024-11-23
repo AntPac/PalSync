@@ -2,7 +2,16 @@ package com.example.demo;
 import java.time.*;
 
 /**
- *
+ a) CalendarSetup
+ b) Creation Date: November 13, 2024
+ Modification Date: November 18, 2024
+ c) Programmer’s Name: Anthony Pacheco, Javier Pulido
+ d) Purpose: Used to created the calendar display aligning the dates properly
+ e) Role: blank() creates an empty calendar structure that can be altered with other methods. calendarMonth() creates the month organization in the structure. changemonth()/changeyear()/setdate() are all methods that let you alter the date to set the calendar up for a certain month
+ f) Data Structures: Array
+ g) Algorithms: Blank() alters the calendar objects’ matrix array by making each space empty. CalanderMonth() Uses the calendar objects date to make a calendar by clearing the matrix using the blank method then sorting the proper days for the month into the matrix accordingly using the localdate class
+ changemonth()/changeyear()/setdate() set the objects date to a specific time using the localdate class
+
  */
 public class CalendarSetup {
     LocalDate currentDate;

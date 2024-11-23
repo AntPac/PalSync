@@ -1,5 +1,16 @@
 package com.example.demo;
-
+/*
+DBUtils
+b) Creation Date: September 30, 2024
+c) Programmer: Sky Dalangin, Javier Pulido
+d) Purpose: Functionality for logging into an account and signing up.
+e) Role: Provides 3 important methods. One reaches the MySQL database and retrieves user information for login. Another reaches the MySQL database to INPUT data for sign up. Finally, the last one changes the scenes between login and signing up.
+f) Data Structures: None
+g) Algorithms:
+changeScene() takes in the scenes and user information to properly perform scene changes for the login/signup page by trying to make sure the inputs are correct before switching the scene
+Loginuser() takes the inputted information and checks the sql for that information loading the calendar page upon success and correcting upon failure
+signupuser() similarly to login gathers the information and stores it into the sql database then logins into calendarpage
+ */
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -62,8 +73,7 @@ public class DBUtils {
 
         try {
 
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/SQLname", "root", "password");
-
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/palsync", "root", "@Xavier625?SQL");
             psCheckUserExists = connection.prepareStatement("SELECT * FROM users WHERE username = ?");
             psCheckUserExists.setString(1, username);
             resultSet = psCheckUserExists.executeQuery();
@@ -131,8 +141,7 @@ public class DBUtils {
 
         try {
 
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/SQLname", "root", "password");
-            preparedStatement = connection.prepareStatement("SELECT password FROM users WHERE username = ?");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/palsync", "root", "@Xavier625?SQL");            preparedStatement = connection.prepareStatement("SELECT password FROM users WHERE username = ?");
             preparedStatement.setString(1, username);
             resultSet = preparedStatement.executeQuery();
 

@@ -1,5 +1,14 @@
 package com.example.demo;
+/*
+a) MakeEventController
+b) Creation Date: November 5, 2024
+c) Programmer’s Name:  Mohy Elhelw, Javier Pulido
+d) Purpose: it manages the Create Event functionality.
+e) Role: allows the user to input event details and ensures the event is saved correctly. Also it links the event to the calendar.
+f) Data Structures: None
+g) Algorithms: saveEventToDatabase() gathers all the inputted data in the make event window, checks it is all properly filled in. then stores the data into the sql database in making sure the connection and storage are successful
 
+ */
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -127,7 +136,7 @@ public class MakeEventController implements Initializable {
 
         try {
             // Connect to the database
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/PalSyncDB", "root", "AugChico");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/palsync", "root", "@Xavier625?SQL");
 
             // Get the user_id based on the username
             preparedStatement = connection.prepareStatement("SELECT user_ID FROM users WHERE username = ?");

@@ -1,5 +1,13 @@
 package com.example.demo;
-
+/*
+a) EventManager
+b) Creation Date: November 8, 2024
+c) Programmer’s Name: Mohy Elhelw
+d) Purpose:Provides centralized functionality for managing events.
+e) Role: Acts as a bridge between the database and the application logic and to a centralized utility class  responsible for managing all event operations in the application.
+f) Data Structures:ArrayList
+g) Algorithms: None
+ */
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;

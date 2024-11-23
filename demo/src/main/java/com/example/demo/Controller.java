@@ -12,6 +12,18 @@ import java.util.ResourceBundle;
 
 // This class provides functionality for the two buttons
 // on the login.fxml
+/*
+a) Controller
+b) Creation Date: September 30, 2024
+Modification Dates:
+October 1, 2024
+October 21, 2024
+c) Programmer: Sky Dalangin
+d) Purpose: This file is the controller for the login fxml
+e) Role: Initializes the program and loads the login UI. Handles the actions to switch the tab to sign up and submit action for login
+f) Data Structures: None
+g) Algorithms: None
+ */
 
 public class Controller implements Initializable {
 
