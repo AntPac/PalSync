@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.sql.*;
@@ -17,9 +18,6 @@ public class MakeEventController implements Initializable {
 
     @FXML
     private TextField eventNameField;
-
-    @FXML
-    private DatePicker eventDatePicker;
 
     @FXML
     private ComboBox<String> startTimeComboBox;
@@ -38,8 +36,20 @@ public class MakeEventController implements Initializable {
 
     private String username;
 
+    private String selectedDate;
+
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public void setSelectedDate(String selectedDate) {
+        this.selectedDate = selectedDate;
+        System.out.println("Selected date set in MakeEventController: " + selectedDate);
+    }
+
+
+    public String getSelectedDate() {
+        return selectedDate;
     }
 
     @Override
@@ -57,10 +67,16 @@ public class MakeEventController implements Initializable {
             @Override
             public void handle(ActionEvent event) {
                 String eventName = eventNameField.getText();
-                String eventDate = eventDatePicker.getValue() != null ? eventDatePicker.getValue().toString() : "";
+                String eventDate = selectedDate; // Use the selectedDate variable
                 String startTime = startTimeComboBox.getValue();
                 String endTime = endTimeComboBox.getValue();
                 String note = noteField.getText();
+
+                // Check if selectedDate is null
+                if (eventDate == null) {
+                    System.out.println("Error: No date selected for the event.");
+                    return; // Stop further execution
+                }
 
                 // Validate that all necessary fields are filled
                 if (eventName.isEmpty() || eventDate.isEmpty() || startTime == null || endTime == null) {
@@ -70,8 +86,11 @@ public class MakeEventController implements Initializable {
 
                 // Save the event to the database
                 saveEventToDatabase(eventName, eventDate, startTime, endTime, note);
+
+                closeWindow();
             }
         });
+
 
 
         cancelButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -79,16 +98,29 @@ public class MakeEventController implements Initializable {
             public void handle(ActionEvent event) {
                 // Clear all fields
                 eventNameField.clear();
-                eventDatePicker.setValue(null);
                 startTimeComboBox.setValue(null);
                 endTimeComboBox.setValue(null);
                 noteField.clear();
 
                 System.out.println("Event creation canceled");
+
+                closeWindow();
             }
         });
     }
+
+    private void closeWindow() {
+        // Get the stage associated with this controller
+        Stage stage = (Stage) saveButton.getScene().getWindow();
+        stage.close();
+    }
+
     private void saveEventToDatabase(String eventName, String eventDate, String startTime, String endTime, String note) {
+        if (eventDate == null) {
+            System.out.println("Error: Cannot save event. Event date is null.");
+            return;
+        }
+
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
@@ -106,13 +138,14 @@ public class MakeEventController implements Initializable {
 
                 // Insert the event into the database
                 preparedStatement = connection.prepareStatement(
-                        "INSERT INTO events (user_id, event_name, event_date, start_time, end_time) VALUES (?, ?, ?, ?, ?)"
+                        "INSERT INTO events (user_id, event_name, event_date, start_time, end_time, note) VALUES (?, ?, ?, ?, ?, ?)"
                 );
                 preparedStatement.setInt(1, userId);
                 preparedStatement.setString(2, eventName);
                 preparedStatement.setDate(3, java.sql.Date.valueOf(eventDate));
                 preparedStatement.setTime(4, java.sql.Time.valueOf(startTime + ":00"));
                 preparedStatement.setTime(5, java.sql.Time.valueOf(endTime + ":00"));
+                preparedStatement.setString(6, note);
 
                 preparedStatement.executeUpdate();
                 System.out.println("Event saved to database.");

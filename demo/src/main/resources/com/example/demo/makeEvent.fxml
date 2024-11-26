@@ -35,9 +35,8 @@
             </HBox>
             <HBox alignment="TOP_CENTER" layoutX="10.0" layoutY="210.0" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
                <children>
-                  <DatePicker fx:id="eventDatePicker" prefHeight="30.0" prefWidth="150.0" promptText="Select a date" />
-                  <ComboBox fx:id="startTimeComboBox" prefHeight="30.0" prefWidth="150.0" promptText="Start time" />
-                  <ComboBox fx:id="endTimeComboBox" layoutX="185.0" layoutY="10.0" prefHeight="30.0" prefWidth="150.0" promptText="End Time"/>
+                  <ComboBox fx:id="startTimeComboBox" prefHeight="30.0" prefWidth="98.0" promptText="Start time" />
+                  <ComboBox fx:id="endTimeComboBox" layoutX="185.0" layoutY="10.0" prefHeight="30.0" prefWidth="98.0" promptText="End Time" />
                </children>
             </HBox>
             <HBox alignment="TOP_CENTER" layoutX="10.0" layoutY="310.0" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
