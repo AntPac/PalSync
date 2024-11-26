@@ -14,6 +14,12 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import javafx.fxml.FXML;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
+import javafx.application.Platform;
+
+
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -23,6 +29,14 @@ import java.util.ResourceBundle;
 
 public class  LoggedInController implements Initializable {
     private String currentUsername;
+
+    @FXML
+    private StackPane mainStackPane;
+    @FXML
+    private AnchorPane eventsView;
+    @FXML
+    private AnchorPane createEventView;
+
 
     public void setUserInformation(String username) {
         this.currentUsername = username;
@@ -200,4 +214,23 @@ public class  LoggedInController implements Initializable {
             }
         }
     }
+
+    @FXML
+    private void showCreateEventView() {
+        eventsView.setVisible(false);
+        createEventView.setVisible(true);
+    }
+
+    @FXML
+    private void showEventsView() {
+        createEventView.setVisible(false);
+        eventsView.setVisible(true);
+    }
+
+    @FXML
+    private void exitApplication() {
+        System.exit(0);
+    }
+
+
 }
