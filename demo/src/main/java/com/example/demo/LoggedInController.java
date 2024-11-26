@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class LoggedInController implements Initializable {
+public class  LoggedInController implements Initializable {
     private String currentUsername;
 
     public void setUserInformation(String username) {

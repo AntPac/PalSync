@@ -62,7 +62,7 @@ public class DBUtils {
 
         try {
 
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/SQLname", "root", "password");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/palsync-login", "root", "Silverlining1986");
 
             psCheckUserExists = connection.prepareStatement("SELECT * FROM users WHERE username = ?");
             psCheckUserExists.setString(1, username);
@@ -132,6 +132,7 @@ public class DBUtils {
         try {
 
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/SQLname", "root", "password");
+
             preparedStatement = connection.prepareStatement("SELECT password FROM users WHERE username = ?");
             preparedStatement.setString(1, username);
             resultSet = preparedStatement.executeQuery();
@@ -139,7 +140,7 @@ public class DBUtils {
             if (!resultSet.isBeforeFirst()) {
                 System.out.println("User not found in database.");
                 Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setContentText("Provided credentials are incorrect!");
+                alert.setContentText("User not found in database.");
                 alert.show();
             } else {
 
