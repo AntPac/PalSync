@@ -131,7 +131,7 @@ public class DBUtils {
 
         try {
 
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/palsync-login", "root", "Silverlining1986");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/SQLname", "root", "password");
 
             preparedStatement = connection.prepareStatement("SELECT password FROM users WHERE username = ?");
             preparedStatement.setString(1, username);
