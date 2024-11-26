@@ -54,7 +54,7 @@
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="36.0" prefWidth="164.0">
                            <children>
-                              <TextField />
+                              <TextField fx:id="titleTextField"/>
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" spacing="10">
@@ -76,7 +76,7 @@
                         <HBox alignment="CENTER" spacing="10">
                            <children>
                               <ComboBox fx:id="startTimeComboBox" prefHeight="25.0" prefWidth="65.0" promptText="hr" />
-                              <ComboBox fx:id="startTimeComboBox1" prefHeight="25.0" prefWidth="65.0" promptText="min" />
+                              <ComboBox fx:id="startMinuteComboBox" prefHeight="25.0" prefWidth="65.0" promptText="min" />
                            </children>
                         </HBox>
                         <Label alignment="CENTER" contentDisplay="CENTER" text="End Date and Time" textAlignment="CENTER">
@@ -86,17 +86,17 @@
                         </Label>
                         <HBox alignment="CENTER" spacing="10">
                            <children>
-                              <DatePicker fx:id="startDatePicker1" prefHeight="25.0" prefWidth="110.0" />
+                              <DatePicker fx:id="endDatePicker" prefHeight="25.0" prefWidth="110.0" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" spacing="10">
                            <children>
-                              <ComboBox fx:id="startTimeComboBox11" prefHeight="22.0" prefWidth="65.0" promptText="hr" />
-                              <ComboBox fx:id="startTimeComboBox1" prefHeight="13.0" prefWidth="65.0" promptText="min" />
+                              <ComboBox fx:id="endTimeComboBox" prefHeight="22.0" prefWidth="65.0" promptText="hr" />
+                              <ComboBox fx:id="endMinuteComboBox" prefHeight="13.0" prefWidth="65.0" promptText="min" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" spacing="10">
-                           <Button fx:id="saveButton" alignment="CENTER" contentDisplay="CENTER" text="Save" />
+                           <Button fx:id="saveButton" alignment="CENTER" contentDisplay="CENTER" text="Save" onAction="#saveEventToDatabase" />
                            <Button fx:id="cancelButton" text="Cancel" />
                         </HBox>
                      </VBox>
