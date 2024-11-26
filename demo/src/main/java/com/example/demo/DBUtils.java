@@ -140,7 +140,7 @@ public class DBUtils {
             if (!resultSet.isBeforeFirst()) {
                 System.out.println("User not found in database.");
                 Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setContentText("Provided credentials are incorrect!");
+                alert.setContentText("User not found in database.");
                 alert.show();
             } else {
 
