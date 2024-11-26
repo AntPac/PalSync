@@ -21,8 +21,8 @@
 <?import javafx.scene.text.Text?>
 
 <SplitPane dividerPositions="0.29797979797979796" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.LoggedInController">
-  <items>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="162.0">
+   <items>
+      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="162.0">
          <children>
             <StackPane layoutY="24.0" prefHeight="374.0" prefWidth="175.0">
                <children>
@@ -30,14 +30,14 @@
                      <children>
                         <VBox layoutX="4.0" layoutY="6.0" prefHeight="364.0" prefWidth="166.0">
                            <children>
-                                 <SplitPane orientation="HORIZONTAL" xmlns:fx="http://javafx.com/fxml/1">
-                                    <!-- Left Section -->
-                                    <AnchorPane prefHeight="449.0" prefWidth="164.0">
-                                       <!-- Event Creation Section -->
-                                       <VBox fx:id="eventCreationVBox" alignment="CENTER" prefHeight="355.0" prefWidth="164.0" spacing="10" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <SplitPane orientation="HORIZONTAL" xmlns:fx="http://javafx.com/fxml/1">
+                                 <!-- Left Section -->
+                                 <AnchorPane prefHeight="449.0" prefWidth="164.0">
+                                    <!-- Event Creation Section -->
+                                    <VBox fx:id="eventCreationVBox" alignment="CENTER" prefHeight="355.0" prefWidth="164.0" spacing="10" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <HBox alignment="CENTER" prefHeight="21.0" prefWidth="164.0">
                                           <children>
-                                                <Label alignment="CENTER" contentDisplay="CENTER" text="Title">
+                                             <Label alignment="CENTER" contentDisplay="CENTER" text="Title">
                                                 <font>
                                                    <Font name="Yu Gothic Bold" size="15.0" />
                                                 </font>
@@ -50,13 +50,13 @@
                                           </children>
                                        </HBox>
 
-                                          <Label alignment="CENTER" contentDisplay="CENTER" text="Start Date and Time" textAlignment="CENTER">
+                                       <Label alignment="CENTER" contentDisplay="CENTER" text="Start Date and Time" textAlignment="CENTER">
                                           <font>
                                              <Font name="Yu Gothic Bold" size="12.0" />
                                           </font></Label>
-                                          <HBox alignment="CENTER" spacing="10">
-                                             <DatePicker fx:id="startDatePicker" prefHeight="25.0" prefWidth="110.0" />
-                                          </HBox>
+                                       <HBox alignment="CENTER" spacing="10">
+                                          <DatePicker fx:id="startDatePicker" prefHeight="25.0" prefWidth="110.0" />
+                                       </HBox>
                                        <HBox alignment="CENTER" spacing="10">
                                           <children>
                                              <ComboBox fx:id="startTimeComboBox" prefHeight="25.0" prefWidth="65.0" promptText="hr" />
@@ -68,11 +68,11 @@
                                              <Font name="Yu Gothic Bold" size="12.0" />
                                           </font>
                                        </Label>
-                                          <HBox alignment="CENTER" spacing="10">
+                                       <HBox alignment="CENTER" spacing="10">
                                           <children>
                                              <DatePicker fx:id="startDatePicker1" prefHeight="25.0" prefWidth="110.0" />
                                           </children>
-                                          </HBox>
+                                       </HBox>
                                        <HBox alignment="CENTER" spacing="10">
                                           <children>
                                              <ComboBox fx:id="startTimeComboBox11" prefHeight="22.0" prefWidth="65.0" promptText="hr" />
@@ -94,12 +94,12 @@
                                           </children>
                                        </HBox>
 
-                                          <HBox alignment="CENTER" spacing="10">
-                                             <Button fx:id="saveButton" alignment="CENTER" contentDisplay="CENTER" text="Save" />
-                                             <Button fx:id="cancelButton" text="Cancel" />
-                                          </HBox>
-                                       </VBox>
-                                    </AnchorPane>
+                                       <HBox alignment="CENTER" spacing="10">
+                                          <Button fx:id="saveButton" alignment="CENTER" contentDisplay="CENTER" text="Save" />
+                                          <Button fx:id="cancelButton" text="Cancel" />
+                                       </HBox>
+                                    </VBox>
+                                 </AnchorPane>
 
 
                               </SplitPane>
@@ -113,16 +113,16 @@
             <VBox prefHeight="23.0" prefWidth="175.0">
                <children>
                   <MenuBar prefHeight="25.0" prefWidth="42.0">
-                    <menus>
-                      <Menu mnemonicParsing="false" text="Create" />
-                      <Menu mnemonicParsing="false" text="Events" />
+                     <menus>
+                        <Menu mnemonicParsing="false" text="Create" />
+                        <Menu mnemonicParsing="false" text="Events" />
                         <Menu mnemonicParsing="false" text="Exit" />
-                    </menus>
+                     </menus>
                   </MenuBar>
                </children>
             </VBox>
          </children></AnchorPane>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
          <children>
             <ImageView fitHeight="50.0" fitWidth="417.0" pickOnBounds="true">
                <image>
@@ -504,5 +504,5 @@
                </font>
             </Button>
          </children></AnchorPane>
-  </items>
+   </items>
 </SplitPane>
