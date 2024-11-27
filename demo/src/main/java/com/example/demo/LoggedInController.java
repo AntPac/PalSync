@@ -73,12 +73,15 @@ public class  LoggedInController implements Initializable {
         ArrayList<Event> monthEvents = EventManager.getEventsForMonth(firstDayOfMonth, lastDayOfMonth, userId);
 
         eventListView.getItems().clear();
-        for (Event event : monthEvents) {
-            String eventDetails = String.format("%s \n%s \n%s - %s \n%s", event.getDate(), event.getName(),  event.getStartTime(), event.getEndTime(),event.getNote());
+        if (monthEvents.isEmpty()) {
+            eventListView.getItems().add("No events available.");
+        } else {
+            for (Event event : monthEvents) {
+                String eventDetails = String.format("%s \n%s \n%s - %s \n%s", event.getDate(), event.getName(),  event.getStartTime(), event.getEndTime(),event.getNote());
 
-            eventListView.getItems().add(eventDetails);
+                eventListView.getItems().add(eventDetails);
+            }
         }
-
     }
 
 
