@@ -63,7 +63,27 @@ public class  LoggedInController implements Initializable {
 
     public void setUserInformation(String username) {
         this.currentUsername = username;
+        int userId = getUserIdFromUsername(username);
+
+        displayEventsForMonth(LocalDate.now(), userId);
     }
+    private void displayEventsForMonth(LocalDate date, int userId) {
+        LocalDate firstDayOfMonth = date.withDayOfMonth(1);
+        LocalDate lastDayOfMonth = date.withDayOfMonth(date.lengthOfMonth());
+        ArrayList<Event> monthEvents = EventManager.getEventsForMonth(firstDayOfMonth, lastDayOfMonth, userId);
+
+        eventListView.getItems().clear();
+        if (monthEvents.isEmpty()) {
+            eventListView.getItems().add("No events available.");
+        } else {
+            for (Event event : monthEvents) {
+                String eventDetails = String.format("%s \n%s \n%s - %s \n%s", event.getDate(), event.getName(),  event.getStartTime(), event.getEndTime(),event.getNote());
+
+                eventListView.getItems().add(eventDetails);
+            }
+        }
+    }
+
 
     @FXML private ListView<String> eventListView;
 
@@ -109,6 +129,7 @@ public class  LoggedInController implements Initializable {
         TextBoxes.add(Text40); TextBoxes.add(Text41);
 
         // Add event listeners to day boxes
+
         for (int i = 0; i < dayBoxes.size(); i++) {
             final int boxIndex = i;
             VBox dayBox = dayBoxes.get(i);
@@ -214,7 +235,7 @@ public class  LoggedInController implements Initializable {
         }
     }
 
-    private void displayEventsForDate(String date) {
+    public void displayEventsForDate(String date) {
         eventListView.getItems().clear();
 
         if (date == null) {
@@ -334,7 +355,7 @@ public class  LoggedInController implements Initializable {
 
             // Database Connection
             try (Connection connection = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/PalSyncDB", "root", "AugChico")) {
+                    "jdbc:mysql://localhost:3306/me", "root", "Password1")) {
 
                 // Get the user ID based on the logged-in username
                 String getUserIdQuery = "SELECT user_ID FROM users WHERE username = ?";
