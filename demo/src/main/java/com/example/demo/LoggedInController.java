@@ -29,6 +29,7 @@ import javafx.scene.layout.StackPane;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -172,6 +173,7 @@ public class  LoggedInController implements Initializable {
             if (controller != null) {
                 controller.setSelectedDate(selectedDate);
                 controller.setUsername(currentUsername);
+                controller.setCalendarController(this);
             }
 
             Stage popupStage = new Stage();
@@ -219,15 +221,40 @@ public class  LoggedInController implements Initializable {
             eventListView.getItems().add("No valid date selected.");
             return;
         }
-
-        ArrayList<Event> events = EventManager.getEventsForDate(date);
+        int userId = getUserIdFromUsername(currentUsername);
+        ArrayList<Event> events = EventManager.getEventsForDate(date, userId);
         if (events.isEmpty()) {
             eventListView.getItems().add("No events available.");
         } else {
             for (Event event : events) {
-                eventListView.getItems().add(event.getName() + " (" + event.getStartTime() + " - " + event.getEndTime() + ")");
+                String eventDetails = String.format("%s \n %s - %s \n %s", event.getName(), event.getStartTime(), event.getEndTime(),event.getNote());
+
+                eventListView.getItems().add(eventDetails);
             }
         }
+    }
+    private int getUserIdFromUsername(String username) {
+        int userId = -1;
+        String query = "SELECT user_ID FROM users WHERE username = ?";
+
+
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/me", "root", "Password1");
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+
+
+            preparedStatement.setString(1, username);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+
+            if (resultSet.next()) {
+                userId = resultSet.getInt("user_ID");
+            }
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return userId;
     }
 
     private void setDays(CalendarSetup display) {

@@ -17,6 +17,7 @@ import java.io.IOException;
 
 public class DBUtils {
 
+
     public static void changeScene(ActionEvent event, String fxmlFile, String title, String username) {
         Parent root = null;
         try {
@@ -132,7 +133,7 @@ public class DBUtils {
         try {
 
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/PalSyncDB", "root", "AugChico");
-
+          
             preparedStatement = connection.prepareStatement("SELECT password FROM users WHERE username = ?");
             preparedStatement.setString(1, username);
             resultSet = preparedStatement.executeQuery();
