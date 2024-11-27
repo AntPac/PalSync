@@ -6,7 +6,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -126,7 +125,6 @@ public class MakeEventController implements Initializable {
         ResultSet resultSet = null;
 
         try {
-            // Connect to the database
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/PalSyncDB", "root", "AugChico");
             // Get the user_id based on the username
             preparedStatement = connection.prepareStatement("SELECT user_ID FROM users WHERE username = ?");
@@ -165,4 +163,13 @@ public class MakeEventController implements Initializable {
             }
         }
     }
+    private LoggedInController calendarController; // Reference to the LoggedInController
+
+
+    public void setCalendarController(LoggedInController calendarController) {
+        this.calendarController = calendarController;
+    }
+
+
+
 }
