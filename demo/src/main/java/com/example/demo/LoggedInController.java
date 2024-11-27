@@ -48,6 +48,9 @@ public class  LoggedInController implements Initializable {
     private TextField titleTextField;
 
     @FXML
+    private TextField noteTextField;
+
+    @FXML
     private DatePicker startDatePicker, endDatePicker;
 
     @FXML
@@ -283,14 +286,15 @@ public class  LoggedInController implements Initializable {
                     Integer.parseInt(endMinuteComboBox.getValue())
             );
 
+            // Retrieve note from the TextField (can be null)
+            String note = noteTextField.getText();
+            if (note != null && note.trim().isEmpty()) {
+                note = null; // Treat empty input as null
+            }
+
             // Validate input
             if (eventName == null || eventName.trim().isEmpty() || eventDate == null) {
                 System.out.println("Event name and date are required.");
-                return;
-            }
-
-            if (currentUsername == null) {
-                System.out.println("User not logged in. Cannot save event.");
                 return;
             }
 
@@ -298,6 +302,7 @@ public class  LoggedInController implements Initializable {
             System.out.println("Event Date: " + eventDate);
             System.out.println("Start Time: " + startTime);
             System.out.println("End Time: " + endTime);
+            System.out.println("Note: " + note);
             System.out.println("Current Username: " + currentUsername);
 
             // Database Connection
@@ -320,7 +325,7 @@ public class  LoggedInController implements Initializable {
                             insertStmt.setDate(3, java.sql.Date.valueOf(eventDate));
                             insertStmt.setTime(4, java.sql.Time.valueOf(startTime));
                             insertStmt.setTime(5, java.sql.Time.valueOf(endTime));
-                            insertStmt.setString(6, ""); // Add note field if applicable
+                            insertStmt.setString(6, note);
 
                             // Execute Insert
                             int rowsAffected = insertStmt.executeUpdate();
@@ -341,6 +346,7 @@ public class  LoggedInController implements Initializable {
             e.printStackTrace();
         }
     }
+
 
 
     @FXML
