@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
@@ -20,105 +21,103 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
+<?import javafx.scene.control.MenuItem?>
 <SplitPane dividerPositions="0.29797979797979796" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.LoggedInController">
    <items>
       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="162.0">
          <children>
-            <StackPane layoutY="24.0" prefHeight="374.0" prefWidth="175.0">
-               <children>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                     <children>
-                        <VBox layoutX="4.0" layoutY="6.0" prefHeight="364.0" prefWidth="166.0">
+            <StackPane fx:id="mainStackPane" layoutY="24.0" prefHeight="374.0" prefWidth="175.0">
+               <!-- Events View -->
+               <AnchorPane fx:id="eventsView" prefHeight="200.0" prefWidth="200.0">
+                  <children>
+                     <VBox layoutX="4.0" layoutY="6.0" prefHeight="364.0" prefWidth="166.0">
+                        <children>
+                           <Label text="Events List" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+                           <!-- Add additional content for the Events View if needed -->
+                        </children>
+                     </VBox>
+                  </children>
+               </AnchorPane>
+
+               <!-- Create Event View -->
+               <AnchorPane fx:id="createEventView" prefHeight="200.0" prefWidth="200.0" visible="false">
+                  <children>
+                     <VBox fx:id="eventCreationVBox" alignment="CENTER" prefHeight="355.0" prefWidth="164.0" spacing="10" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <HBox alignment="CENTER" prefHeight="21.0" prefWidth="164.0">
                            <children>
-                              <SplitPane orientation="HORIZONTAL" xmlns:fx="http://javafx.com/fxml/1">
-                                 <!-- Left Section -->
-                                 <AnchorPane prefHeight="449.0" prefWidth="164.0">
-                                    <!-- Event Creation Section -->
-                                    <VBox fx:id="eventCreationVBox" alignment="CENTER" prefHeight="355.0" prefWidth="164.0" spacing="10" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                       <HBox alignment="CENTER" prefHeight="21.0" prefWidth="164.0">
-                                          <children>
-                                             <Label alignment="CENTER" contentDisplay="CENTER" text="Title">
-                                                <font>
-                                                   <Font name="Yu Gothic Bold" size="15.0" />
-                                                </font>
-                                             </Label>
-                                          </children>
-                                       </HBox>
-                                       <HBox alignment="CENTER" prefHeight="36.0" prefWidth="164.0">
-                                          <children>
-                                             <TextField prefHeight="324.0" prefWidth="149.0" />
-                                          </children>
-                                       </HBox>
-
-                                       <Label alignment="CENTER" contentDisplay="CENTER" text="Start Date and Time" textAlignment="CENTER">
-                                          <font>
-                                             <Font name="Yu Gothic Bold" size="12.0" />
-                                          </font></Label>
-                                       <HBox alignment="CENTER" spacing="10">
-                                          <DatePicker fx:id="startDatePicker" prefHeight="25.0" prefWidth="110.0" />
-                                       </HBox>
-                                       <HBox alignment="CENTER" spacing="10">
-                                          <children>
-                                             <ComboBox fx:id="startTimeComboBox" prefHeight="25.0" prefWidth="65.0" promptText="hr" />
-                                             <ComboBox fx:id="startTimeComboBox1" prefHeight="25.0" prefWidth="65.0" promptText="min" />
-                                          </children>
-                                       </HBox>
-                                       <Label alignment="CENTER" contentDisplay="CENTER" text="End Date and Time" textAlignment="CENTER">
-                                          <font>
-                                             <Font name="Yu Gothic Bold" size="12.0" />
-                                          </font>
-                                       </Label>
-                                       <HBox alignment="CENTER" spacing="10">
-                                          <children>
-                                             <DatePicker fx:id="startDatePicker1" prefHeight="25.0" prefWidth="110.0" />
-                                          </children>
-                                       </HBox>
-                                       <HBox alignment="CENTER" spacing="10">
-                                          <children>
-                                             <ComboBox fx:id="startTimeComboBox11" prefHeight="22.0" prefWidth="65.0" promptText="hr" />
-                                             <ComboBox fx:id="startTimeComboBox1" prefHeight="13.0" prefWidth="65.0" promptText="min" />
-                                          </children>
-                                       </HBox>
-                                       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-                                          <children>
-                                             <Label alignment="CENTER" text="Note: " textAlignment="CENTER">
-                                                <font>
-                                                   <Font name="Yu Gothic UI Semibold" size="12.0" />
-                                                </font>
-                                             </Label>
-                                          </children>
-                                       </HBox>
-                                       <HBox alignment="CENTER" layoutX="10.0" layoutY="267.0" prefHeight="136.0" prefWidth="164.0">
-                                          <children>
-                                             <TextField prefHeight="243.0" prefWidth="149.0" />
-                                          </children>
-                                       </HBox>
-
-                                       <HBox alignment="CENTER" spacing="10">
-                                          <Button fx:id="saveButton" alignment="CENTER" contentDisplay="CENTER" text="Save" />
-                                          <Button fx:id="cancelButton" text="Cancel" />
-                                       </HBox>
-                                    </VBox>
-                                 </AnchorPane>
-
-
-                              </SplitPane>
-
+                              <Label alignment="CENTER" contentDisplay="CENTER" text="Title">
+                                 <font>
+                                    <Font name="Yu Gothic Bold" size="15.0" />
+                                 </font>
+                              </Label>
                            </children>
-                        </VBox>
-                     </children>
-                  </AnchorPane>
-               </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="36.0" prefWidth="164.0">
+                           <children>
+                              <TextField />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" spacing="10">
+                           <Label text="All Day">
+                              <font>
+                                 <Font name="Yu Gothic UI Regular" size="12.0" />
+                              </font>
+                           </Label>
+                           <CheckBox fx:id="allDayToggle" />
+                        </HBox>
+                        <Label alignment="CENTER" contentDisplay="CENTER" text="Start Date and Time" textAlignment="CENTER">
+                           <font>
+                              <Font name="Yu Gothic Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <HBox alignment="CENTER" spacing="10">
+                           <DatePicker fx:id="startDatePicker" prefHeight="25.0" prefWidth="110.0" />
+                        </HBox>
+                        <HBox alignment="CENTER" spacing="10">
+                           <children>
+                              <ComboBox fx:id="startTimeComboBox" prefHeight="25.0" prefWidth="65.0" promptText="hr" />
+                              <ComboBox fx:id="startMinuteComboBox" prefHeight="25.0" prefWidth="65.0" promptText="min" />
+                           </children>
+                        </HBox>
+                        <Label alignment="CENTER" contentDisplay="CENTER" text="End Date and Time" textAlignment="CENTER">
+                           <font>
+                              <Font name="Yu Gothic Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <HBox alignment="CENTER" spacing="10">
+                           <children>
+                              <DatePicker fx:id="endDatePicker" prefHeight="25.0" prefWidth="110.0" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" spacing="10">
+                           <children>
+                              <ComboBox fx:id="endTimeComboBox" prefHeight="22.0" prefWidth="65.0" promptText="hr" />
+                              <ComboBox fx:id="endMinuteComboBox" prefHeight="13.0" prefWidth="65.0" promptText="min" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" spacing="10">
+                           <Button fx:id="saveButton" alignment="CENTER" contentDisplay="CENTER" text="Save" onAction="#saveEventToDatabase" />
+                           <Button fx:id="cancelButton" text="Cancel" />
+                        </HBox>
+                     </VBox>
+                  </children>
+               </AnchorPane>
             </StackPane>
+
             <VBox prefHeight="23.0" prefWidth="175.0">
                <children>
-                  <MenuBar prefHeight="25.0" prefWidth="42.0">
-                     <menus>
-                        <Menu mnemonicParsing="false" text="Create" />
-                        <Menu mnemonicParsing="false" text="Events" />
-                        <Menu mnemonicParsing="false" text="Exit" />
-                     </menus>
-                  </MenuBar>
+                  <HBox spacing="10" alignment="CENTER" prefHeight="30.0">
+                     <children>
+                        <HBox spacing="10" alignment="CENTER" prefHeight="30.0">
+                           <children>
+                              <Button text="Create" onAction="#showCreateEventView" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-padding: 0; -fx-text-fill: black; -fx-font-size: 14px;" />
+                              <Button text="Events" onAction="#showEventsView" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-padding: 0; -fx-text-fill: black; -fx-font-size: 14px;" />
+                              <Button text="Exit" onAction="#exitApplication" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-padding: 0; -fx-text-fill: black; -fx-font-size: 14px;" />
+                           </children>
+                        </HBox>
+
+                     </children>
+                  </HBox>
                </children>
             </VBox>
          </children></AnchorPane>
