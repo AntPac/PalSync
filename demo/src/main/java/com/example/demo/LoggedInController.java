@@ -15,10 +15,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ContextMenu;
-import javafx.scene.control.ListView;
-import javafx.scene.control.MenuItem;
+import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
@@ -53,9 +50,12 @@ public class LoggedInController implements Initializable {
     @FXML private Text TextMonth;
     @FXML private Button Next, Prev;
 
+
+
     private List<VBox> dayBoxes = new ArrayList<>();
     private List<Text> TextBoxes = new ArrayList<>();
     private CalendarSetup show = new CalendarSetup();
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -81,6 +81,7 @@ public class LoggedInController implements Initializable {
         TextBoxes.add(Text35); TextBoxes.add(Text36); TextBoxes.add(Text37); TextBoxes.add(Text38); TextBoxes.add(Text39);
         TextBoxes.add(Text40); TextBoxes.add(Text41);
 
+
         // Add event listeners to day boxes
         for (int i = 0; i < dayBoxes.size(); i++) {
             final int boxIndex = i;
@@ -102,6 +103,10 @@ public class LoggedInController implements Initializable {
             dayBox.setOnContextMenuRequested(event -> contextMenu.show(dayBox, event.getScreenX(), event.getScreenY()));
         }
 
+
+
+
+
         CalendarSetup now = new CalendarSetup();
         now.calendarMonth();
         show = now; // Save current CalendarSetup instance
@@ -120,6 +125,10 @@ public class LoggedInController implements Initializable {
         Prev.setOnMouseClicked(event -> {
             show.changeMonth(false);
             setDays(show);
+        });
+
+        TextMonth.setOnMouseClicked(event ->{
+            openDateSelector();
         });
     }
     private void openCreateEventPopup(String selectedDate) {
@@ -140,7 +149,22 @@ public class LoggedInController implements Initializable {
             Stage popupStage = new Stage();
             popupStage.initModality(Modality.APPLICATION_MODAL);
             popupStage.setTitle("Create New Event");
-            popupStage.setScene(new Scene(popupRoot, 482, 281));
+            popupStage.setScene(new Scene(popupRoot, 482, 280));
+            popupStage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    private void openDateSelector() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("dateSelector.fxml"));
+            Parent popupRoot = loader.load();
+            DateSelectorController controller = loader.getController();
+            controller.setMainController(this);
+            Stage popupStage = new Stage();
+            popupStage.initModality(Modality.APPLICATION_MODAL);
+            popupStage.setTitle("Create New Event");
+            popupStage.setScene(new Scene(popupRoot, 300, 200));
             popupStage.showAndWait();
         } catch (IOException e) {
             e.printStackTrace();
@@ -205,9 +229,21 @@ public class LoggedInController implements Initializable {
                 if (i < TextBoxes.size()) {
                     Object value = cal[j][k];
                     TextBoxes.get(i).setText(value == null ? "" : " " + value.toString());
+                    dayBoxes.get(i).setStyle("-fx-background-color : white;");
+
                     i++;
                 }
             }
         }
+        for (int j = 0; j< TextBoxes.size(); j++){
+            if (TextBoxes.get(j).getText().equals("  ")){
+                dayBoxes.get(j).setStyle("-fx-background-color : #D3D3D3;");
+            }
+        }
     }
+    public  void setSelected(int m, int y){
+        show.setDate(m,y);
+        setDays(show);
+    }
+
 }
