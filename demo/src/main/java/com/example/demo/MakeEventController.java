@@ -125,7 +125,7 @@ public class MakeEventController implements Initializable {
         ResultSet resultSet = null;
 
         try {
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/PalSyncDB", "root", "AugChico");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/me", "root", "Password1");
             // Get the user_id based on the username
             preparedStatement = connection.prepareStatement("SELECT user_ID FROM users WHERE username = ?");
             preparedStatement.setString(1, this.username);
@@ -147,6 +147,10 @@ public class MakeEventController implements Initializable {
 
                 preparedStatement.executeUpdate();
                 System.out.println("Event saved to database.");
+                if (calendarController != null) {
+                    calendarController.displayEventsForDate(eventDate);
+                }
+
             } else {
                 System.out.println("User not found.");
             }
