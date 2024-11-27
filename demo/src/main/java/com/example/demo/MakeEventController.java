@@ -125,8 +125,7 @@ public class MakeEventController implements Initializable {
         ResultSet resultSet = null;
 
         try {
-            // Connect to the database
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/me", "root", "Password1");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/PalSyncDB", "root", "AugChico");
             // Get the user_id based on the username
             preparedStatement = connection.prepareStatement("SELECT user_ID FROM users WHERE username = ?");
             preparedStatement.setString(1, this.username);

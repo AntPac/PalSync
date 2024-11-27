@@ -15,9 +15,16 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
+
+import java.sql.*;
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
-import javafx.application.Platform;
+
 
 
 import java.io.IOException;
@@ -37,6 +44,21 @@ public class  LoggedInController implements Initializable {
     private AnchorPane eventsView;
     @FXML
     private AnchorPane createEventView;
+
+    @FXML
+    private TextField titleTextField;
+
+    @FXML
+    private TextField noteTextField;
+
+    @FXML
+    private DatePicker startDatePicker, endDatePicker;
+
+    @FXML
+    private ComboBox<String> startTimeComboBox, startMinuteComboBox, endTimeComboBox, endMinuteComboBox;
+
+    @FXML
+    private CheckBox allDayToggle;
 
 
     public void setUserInformation(String username) {
@@ -126,6 +148,17 @@ public class  LoggedInController implements Initializable {
             show.changeMonth(false);
             setDays(show);
         });
+
+        for (int i = 0; i < 24; i++) {
+            String hour = String.format("%02d", i);
+            startTimeComboBox.getItems().add(hour);
+            endTimeComboBox.getItems().add(hour);
+        }
+        for (int i = 0; i < 60; i++) {
+            String minute = String.format("%02d", i);
+            startMinuteComboBox.getItems().add(minute);
+            endMinuteComboBox.getItems().add(minute);
+        }
     }
     private void openCreateEventPopup(String selectedDate) {
         if (selectedDate == null) {
@@ -257,6 +290,102 @@ public class  LoggedInController implements Initializable {
     @FXML
     private void exitApplication() {
         System.exit(0);
+    }
+
+    @FXML
+    private void saveEventToDatabase() {
+        try {
+            // Get user input
+            String eventName = titleTextField.getText();
+            LocalDate eventDate = startDatePicker.getValue();
+            if (startTimeComboBox.getValue() == null || startMinuteComboBox.getValue() == null ||
+                    endTimeComboBox.getValue() == null || endMinuteComboBox.getValue() == null) {
+                System.out.println("Time fields are required.");
+                return;
+            }
+
+            LocalTime startTime = LocalTime.of(
+                    Integer.parseInt(startTimeComboBox.getValue()),
+                    Integer.parseInt(startMinuteComboBox.getValue())
+            );
+            LocalTime endTime = LocalTime.of(
+                    Integer.parseInt(endTimeComboBox.getValue()),
+                    Integer.parseInt(endMinuteComboBox.getValue())
+            );
+
+            // Retrieve note from the TextField (can be null)
+            String note = noteTextField.getText();
+            if (note != null && note.trim().isEmpty()) {
+                note = null; // Treat empty input as null
+            }
+
+            // Validate input
+            if (eventName == null || eventName.trim().isEmpty() || eventDate == null) {
+                System.out.println("Event name and date are required.");
+                return;
+            }
+
+            System.out.println("Event Name: " + eventName);
+            System.out.println("Event Date: " + eventDate);
+            System.out.println("Start Time: " + startTime);
+            System.out.println("End Time: " + endTime);
+            System.out.println("Note: " + note);
+            System.out.println("Current Username: " + currentUsername);
+
+            // Database Connection
+            try (Connection connection = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/PalSyncDB", "root", "AugChico")) {
+
+                // Get the user ID based on the logged-in username
+                String getUserIdQuery = "SELECT user_ID FROM users WHERE username = ?";
+                try (PreparedStatement getUserIdStmt = connection.prepareStatement(getUserIdQuery)) {
+                    getUserIdStmt.setString(1, currentUsername);
+                    ResultSet rs = getUserIdStmt.executeQuery();
+                    if (rs.next()) {
+                        int userId = rs.getInt("user_ID");
+
+                        // Insert the event into the database
+                        String insertQuery = "INSERT INTO events (user_id, event_name, event_date, start_time, end_time, note) VALUES (?, ?, ?, ?, ?, ?)";
+                        try (PreparedStatement insertStmt = connection.prepareStatement(insertQuery)) {
+                            insertStmt.setInt(1, userId);
+                            insertStmt.setString(2, eventName);
+                            insertStmt.setDate(3, java.sql.Date.valueOf(eventDate));
+                            insertStmt.setTime(4, java.sql.Time.valueOf(startTime));
+                            insertStmt.setTime(5, java.sql.Time.valueOf(endTime));
+                            insertStmt.setString(6, note);
+
+                            // Execute Insert
+                            int rowsAffected = insertStmt.executeUpdate();
+                            if (rowsAffected > 0) {
+                                System.out.println("Event saved successfully!");
+                                switchToEventsView(); // Return to the events list
+                            }
+                        }
+                    } else {
+                        System.out.println("User ID not found for the current username.");
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid time input. Please enter valid hours and minutes.");
+            e.printStackTrace();
+        }
+    }
+
+
+
+    @FXML
+    private void switchToEventsView() {
+        createEventView.setVisible(false);
+        eventsView.setVisible(true);
+    }
+
+    @FXML
+    private void switchToCreateEventView() {
+        eventsView.setVisible(false);
+        createEventView.setVisible(true);
     }
 
 
