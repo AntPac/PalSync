@@ -17,6 +17,7 @@ import java.io.IOException;
 
 public class DBUtils {
 
+
     public static void changeScene(ActionEvent event, String fxmlFile, String title, String username) {
         Parent root = null;
         try {
@@ -62,7 +63,7 @@ public class DBUtils {
 
         try {
 
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/palsync-login", "root", "Silverlining1986");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/me", "root", "Password1");
 
             psCheckUserExists = connection.prepareStatement("SELECT * FROM users WHERE username = ?");
             psCheckUserExists.setString(1, username);
@@ -131,7 +132,7 @@ public class DBUtils {
 
         try {
 
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/SQLname", "root", "password");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/me", "root", "Password1");
 
             preparedStatement = connection.prepareStatement("SELECT password FROM users WHERE username = ?");
             preparedStatement.setString(1, username);
