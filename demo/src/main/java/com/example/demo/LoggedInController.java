@@ -214,7 +214,7 @@ public class  LoggedInController implements Initializable {
         }
     }
 
-    private void displayEventsForDate(String date) {
+    public void displayEventsForDate(String date) {
         eventListView.getItems().clear();
 
         if (date == null) {
@@ -334,7 +334,7 @@ public class  LoggedInController implements Initializable {
 
             // Database Connection
             try (Connection connection = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/PalSyncDB", "root", "AugChico")) {
+                    "jdbc:mysql://localhost:3306/me", "root", "Password1")) {
 
                 // Get the user ID based on the logged-in username
                 String getUserIdQuery = "SELECT user_ID FROM users WHERE username = ?";
