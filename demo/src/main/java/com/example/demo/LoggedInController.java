@@ -31,9 +31,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class  LoggedInController implements Initializable {
     private String currentUsername;
@@ -76,7 +74,15 @@ public class  LoggedInController implements Initializable {
         if (monthEvents.isEmpty()) {
             eventListView.getItems().add("No events available.");
         } else {
-            for (Event event : monthEvents) {
+            PriorityQueue<Event> eventQueue = new PriorityQueue<>(
+                    Comparator.comparing(Event::getDate).thenComparing(Event::getStartTime)
+            );
+
+            // Add all events to the PriorityQueue
+            eventQueue.addAll(monthEvents);
+            while (!eventQueue.isEmpty()) {
+                Event event = eventQueue.poll();
+
                 String eventDetails = String.format("%s \n%s \n%s - %s \n%s", event.getDate(), event.getName(),  event.getStartTime(), event.getEndTime(),event.getNote());
 
                 eventListView.getItems().add(eventDetails);
