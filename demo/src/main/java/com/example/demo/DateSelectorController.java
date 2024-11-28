@@ -13,19 +13,7 @@ import java.util.ResourceBundle;
 public class DateSelectorController implements Initializable {
     @FXML
     private TextField YearField;
-    @FXML private Button b0;
-    @FXML private Button b1;
-    @FXML private Button b2;
-    @FXML private Button b3;
-    @FXML private Button b4;
-    @FXML private Button b5;
-    @FXML private Button b6;
-    @FXML private Button b7;
-    @FXML private Button b8;
-    @FXML private Button b9;
-    @FXML private Button b10;
-    @FXML private Button b11;
-    @FXML private Button b12;
+    @FXML private Button b0, b1, b2, b3, b4, b5,b6, b7,b8,b9,b10,b11,b12;
     private List<Button> Buttons = new ArrayList<>();
     private int month, year;
     private LoggedInController main;
