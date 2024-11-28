@@ -312,8 +312,10 @@ public class  LoggedInController implements Initializable {
     private void showEventsView() {
         createEventView.setVisible(false);
         eventsView.setVisible(true);
-    }
+        int userId = getUserIdFromUsername(currentUsername);
+        displayEventsForMonth(LocalDate.now(), userId);
 
+    }
     @FXML
     private void exitApplication() {
         System.exit(0);
