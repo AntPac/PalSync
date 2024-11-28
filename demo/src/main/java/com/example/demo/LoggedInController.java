@@ -169,6 +169,10 @@ public class  LoggedInController implements Initializable {
             show.changeMonth(false);
             setDays(show);
         });
+        TextMonth.setOnMouseClicked(event ->{
+            openDateSelector();
+        });
+
 
         for (int i = 0; i < 24; i++) {
             String hour = String.format("%02d", i);
@@ -206,6 +210,23 @@ public class  LoggedInController implements Initializable {
             e.printStackTrace();
         }
     }
+
+    private void openDateSelector() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("dateSelector.fxml"));
+            Parent popupRoot = loader.load();
+            DateSelectorController controller = loader.getController();
+            controller.setMainController(this);
+            Stage popupStage = new Stage();
+            popupStage.initModality(Modality.APPLICATION_MODAL);
+            popupStage.setTitle("Create New Event");
+            popupStage.setScene(new Scene(popupRoot, 300, 200));
+            popupStage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     private String getDateForDay(int boxIndex) {
         Object[][] calendar = show.getCalendar();
@@ -259,7 +280,7 @@ public class  LoggedInController implements Initializable {
         String query = "SELECT user_ID FROM users WHERE username = ?";
 
 
-        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/me", "root", "Password1");
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/SQLname", "root", "Password");
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
 
@@ -290,11 +311,23 @@ public class  LoggedInController implements Initializable {
                 if (i < TextBoxes.size()) {
                     Object value = cal[j][k];
                     TextBoxes.get(i).setText(value == null ? "" : " " + value.toString());
+                    dayBoxes.get(i).setStyle("-fx-background-color : white;");
                     i++;
                 }
             }
         }
+        for (int j = 0; j< TextBoxes.size(); j++){
+            if (TextBoxes.get(j).getText().equals("  ")){
+                dayBoxes.get(j).setStyle("-fx-background-color : #D3D3D3;");
+            }
+        }
+
     }
+    public  void setSelected(int m, int y){
+        show.setDate(m,y);
+        setDays(show);
+    }
+
 
     @FXML
     private void showCreateEventView() {
