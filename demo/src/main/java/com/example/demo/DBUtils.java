@@ -1,7 +1,6 @@
 package com.example.demo;
 
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -9,7 +8,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
-import com.example.demo.MakeEventController;
 
 
 import java.sql.*;
@@ -63,7 +61,7 @@ public class DBUtils {
 
         try {
 
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/me", "root", "Password1");
+            connection = DriverManager.getConnection("jdbc:mysql://192.168.4.34:3306/PalSyncData", "root", "Silverlining1986");
 
             psCheckUserExists = connection.prepareStatement("SELECT * FROM users WHERE username = ?");
             psCheckUserExists.setString(1, username);
@@ -132,7 +130,7 @@ public class DBUtils {
 
         try {
 
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/me", "root", "Password1");
+            connection = DriverManager.getConnection("jdbc:mysql://192.168.4.34:3306/PalSyncData", "root", "Silverlining1986");
           
             preparedStatement = connection.prepareStatement("SELECT password FROM users WHERE username = ?");
             preparedStatement.setString(1, username);
