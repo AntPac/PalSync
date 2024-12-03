@@ -114,7 +114,7 @@ public class MakeEventController implements Initializable {
         stage.close();
     }
 
-    private void saveEventToDatabase(String eventName, String eventDate, String startTime, String endTime, String note) {
+    public void saveEventToDatabase(String eventName, String eventDate, String startTime, String endTime, String note) {
         if (eventDate == null) {
             System.out.println("Error: Cannot save event. Event date is null.");
             return;

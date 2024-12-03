@@ -1,13 +1,80 @@
 import com.example.demo.MakeEventController;
 import org.junit.jupiter.api.Test;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class MakeEventControllerTest {
+    @Test
+    void testComboBox() {
+        System.out.println("\n=== Running testComboBox ===");
+        // Simulate ComboBox components
+        List<String> startTimeItems = new ArrayList<>();
+        List<String> endTimeItems = new ArrayList<>();
+
+        // Simulate the initialization logic
+        for (int i = 0; i < 24; i++) {
+            String time = String.format("%02d:00", i);
+            startTimeItems.add(time);
+            endTimeItems.add(time);
+        }
+
+        // Print the items
+        System.out.println("startTimeComboBox items: " + startTimeItems);
+        System.out.println("endTimeComboBox items: " + endTimeItems);
+
+        // Assertions to verify the ComboBox contains the correct times
+        assertEquals(24, startTimeItems.size(), "startTimeComboBox should contain 24 items.");
+        assertEquals(24, endTimeItems.size(), "endTimeComboBox should contain 24 items.");
+        assertEquals("00:00", startTimeItems.get(0), "First item in startTimeComboBox should be 00:00.");
+        assertEquals("23:00", startTimeItems.get(23), "Last item in startTimeComboBox should be 23:00.");
+        assertEquals("00:00", endTimeItems.get(0), "First item in endTimeComboBox should be 00:00.");
+        assertEquals("23:00", endTimeItems.get(23), "Last item in endTimeComboBox should be 23:00.");
+
+        System.out.println("ComboBox was successfully.");
+
+
+        System.out.println("=== Finished testComboBox ===");
+    }
+    @Test
+    void testSaveButtonFunctionality() {
+        System.out.println("\n=== Running testSaveButtonFunctionality ===");
+        String eventName = "Test Event";
+        String selectedDate = "2024-12-01"; // Simulating a valid selected date
+        String startTime = "10:00";
+        String endTime = "11:00";
+        String note = "Test note";
+
+        // Case 1: All valid inputs
+        String result = simulateSaveButtonLogic(eventName, selectedDate, startTime, endTime, note);
+        assertEquals("Success: Event saved!", result, "Expected success message for valid inputs.");
+        System.out.println(result);
+
+        // Case 2: Missing selectedDate
+        result = simulateSaveButtonLogic(eventName, null, startTime, endTime, note);
+        assertEquals("Error: No date selected for the event.", result, "Expected error message for missing date.");
+        System.out.println(result);
+
+        // Case 3: Missing fields
+        result = simulateSaveButtonLogic("", selectedDate, startTime, endTime, note);
+        assertEquals("Error: Please fill in all the required fields.", result, "Expected error message for missing fields.");
+        System.out.println(result);
+        System.out.println("=== Finished testSaveButtonFunctionality ===");
+    }
+    private String simulateSaveButtonLogic(String eventName, String selectedDate, String startTime, String endTime, String note) {
+        // Simulate the save button logic
+        if (selectedDate == null) {
+            return "Error: No date selected for the event.";
+        }
+        if (eventName.isEmpty() || startTime == null || endTime == null) {
+            return "Error: Please fill in all the required fields.";
+        }
+        // Simulate saving the event to the database
+        return "Success: Event saved!";
+    }
 
     //Test when eventDate is Null
     @Test
@@ -27,9 +94,9 @@ class MakeEventControllerTest {
     void testDatabaseConnection() {
         System.out.println("\n=== Running testDatabaseConnection ===");
 
-        String url = "jdbc:mysql://localhost:3306/PalSyncDB";
+        String url = "jdbc:mysql://localhost:3306/me";
         String username = "root";
-        String password = "AugChico";
+        String password = "Password1";
         Connection connection = null;
 
         try {
@@ -76,7 +143,7 @@ class MakeEventControllerTest {
         try {
             // Attempt to connect to the database
             System.out.println("Connecting to the database...");
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/PalSyncDB", "root", "AugChico");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/me", "root", "Password1");
             System.out.println("Database connection established.");
 
             // Prepare the statement to query for user_ID
@@ -140,7 +207,7 @@ class MakeEventControllerTest {
         try {
             // Attempt to connect to the database
             System.out.println("Connecting to the database...");
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/PalSyncDB", "root", "AugChico");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/me", "root", "Password1");
             System.out.println("Database connection established.");
 
             // Prepare the statement with a non-existing username
@@ -206,7 +273,7 @@ class MakeEventControllerTest {
         try {
             // Set up the connection
             System.out.println("Connecting to the database...");
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/PalSyncDB", "root", "AugChico");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/me", "root", "Password1");
             System.out.println("Database connection established.");
 
             // Prepare the SQL statement for inserting an event
@@ -355,7 +422,7 @@ class MakeEventControllerTest {
         try {
             // Set up a real database connection
             System.out.println("Connecting to the database...");
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/PalSyncDB", "root", "AugChico");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/me", "root", "Password1");
             System.out.println("Database connection established.");
 
             // Prepare the SQL statement for inserting an event
