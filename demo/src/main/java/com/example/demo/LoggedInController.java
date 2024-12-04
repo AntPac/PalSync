@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
@@ -106,6 +107,7 @@ public class  LoggedInController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        setupEventContextMenu();
         // Add all day boxes to the list
         dayBoxes.add(vbox0); dayBoxes.add(vbox1); dayBoxes.add(vbox2); dayBoxes.add(vbox3); dayBoxes.add(vbox4);
         dayBoxes.add(vbox5); dayBoxes.add(vbox6); dayBoxes.add(vbox7); dayBoxes.add(vbox8); dayBoxes.add(vbox9);
@@ -280,7 +282,7 @@ public class  LoggedInController implements Initializable {
         String query = "SELECT user_ID FROM users WHERE username = ?";
 
 
-        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/SQLname", "root", "Password");
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/PalSyncDB", "root", "AugChico");
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
 
@@ -339,7 +341,75 @@ public class  LoggedInController implements Initializable {
     private void showEventsView() {
         createEventView.setVisible(false);
         eventsView.setVisible(true);
+
+        if (currentUsername != null) {
+            int userId = getUserIdFromUsername(currentUsername);
+            displayEventsForMonth(LocalDate.now(), userId);
+        }
     }
+
+    private void setupEventContextMenu() {
+        ContextMenu contextMenu = new ContextMenu();
+        MenuItem deleteItem = new MenuItem("Delete Event");
+
+        deleteItem.setOnAction(event -> {
+            String selectedEvent = eventListView.getSelectionModel().getSelectedItem();
+            if (selectedEvent != null) {
+                handleEventDeletion(selectedEvent);
+            }
+        });
+
+        contextMenu.getItems().add(deleteItem);
+
+        eventListView.setOnMouseClicked(event -> {
+            if (event.getButton() == MouseButton.SECONDARY) { // Right-click
+                contextMenu.show(eventListView, event.getScreenX(), event.getScreenY());
+            } else {
+                contextMenu.hide();
+            }
+        });
+    }
+
+    private void handleEventDeletion(String selectedEventDetails) {
+        // Parse the selected event details to extract the event name or ID
+        String[] details = selectedEventDetails.split("\n");
+        if (details.length > 0) {
+            String eventName = details[1].trim(); // Assuming the event name is on the second line
+
+            // Call a method to delete the event from the database
+            deleteEventFromDatabase(eventName);
+
+            // Remove the event from the ListView
+            eventListView.getItems().remove(selectedEventDetails);
+
+            System.out.println("Event deleted successfully: " + eventName);
+        } else {
+            System.out.println("Error: Unable to parse selected event details.");
+        }
+    }
+
+    private void deleteEventFromDatabase(String eventName) {
+        String deleteQuery = "DELETE FROM events WHERE event_name = ? AND user_id = ?";
+
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/PalSyncDB", "root", "AugChico");
+             PreparedStatement preparedStatement = connection.prepareStatement(deleteQuery)) {
+
+            int userId = getUserIdFromUsername(currentUsername);
+            preparedStatement.setString(1, eventName);
+            preparedStatement.setInt(2, userId);
+
+            int rowsAffected = preparedStatement.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Event deleted successfully from the database.");
+            } else {
+                System.out.println("No event found to delete.");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 
     @FXML
     private void exitApplication() {
@@ -434,6 +504,7 @@ public class  LoggedInController implements Initializable {
     private void switchToEventsView() {
         createEventView.setVisible(false);
         eventsView.setVisible(true);
+
     }
 
     @FXML
