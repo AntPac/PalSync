@@ -49,7 +49,7 @@ public class EventManager {
         ArrayList<Event> events = new ArrayList<>();
         String query = "SELECT event_name, event_date, start_time, end_time, note FROM events WHERE user_id = ? AND event_date BETWEEN ? AND ?";
 
-        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/PalSyncDB", "root", "AugChico");
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/DataBaseName", "root", "Password");
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
             preparedStatement.setInt(1, userId);
