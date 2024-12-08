@@ -284,7 +284,7 @@ public class  LoggedInController implements Initializable {
         String query = "SELECT user_ID FROM users WHERE username = ?";
 
 
-        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/databasename", "root", "password");
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/PalSyncDB", "root", "AugChico");
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
 
@@ -391,7 +391,7 @@ public class  LoggedInController implements Initializable {
     private void deleteEventFromDatabase(String eventName) {
         String deleteQuery = "DELETE FROM events WHERE event_name = ? AND user_id = ?";
 
-        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/databasename", "root", "password");
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/PalSyncDB", "root", "AugChico");
              PreparedStatement preparedStatement = connection.prepareStatement(deleteQuery)) {
 
             int userId = getUserIdFromUsername(currentUsername);
@@ -451,7 +451,7 @@ public class  LoggedInController implements Initializable {
             System.out.println("Current Username: " + currentUsername);
 
             try (Connection connection = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/me", "root", "Password1")) {
+                    "jdbc:mysql://localhost:3306/PalSyncDB", "root", "AugChico")) {
 
                 String getUserIdQuery = "SELECT user_ID FROM users WHERE username = ?";
                 try (PreparedStatement getUserIdStmt = connection.prepareStatement(getUserIdQuery)) {
@@ -460,7 +460,7 @@ public class  LoggedInController implements Initializable {
                     if (rs.next()) {
                         int userId = rs.getInt("user_ID");
 
-                        String insertQuery = "INSERT INTO events (user_id, event_name, event_date, start_time, end_time, end_time, note) VALUES ( ?, ?, ?, ?, ?, ?)";
+                        String insertQuery = "INSERT INTO events (user_id, event_name, event_date, start_time, end_time, note) VALUES ( ?, ?, ?, ?, ?, ?)";
                         try (PreparedStatement insertStmt = connection.prepareStatement(insertQuery)) {
                             insertStmt.setInt(1, userId);
                             insertStmt.setString(2, eventName);

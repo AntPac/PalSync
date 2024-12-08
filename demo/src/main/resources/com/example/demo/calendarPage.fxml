@@ -26,7 +26,7 @@
                </AnchorPane>
 
                <!-- Create Event View -->
-               <AnchorPane fx:id="createEventView" prefHeight="200.0" prefWidth="200.0" visible="true">
+               <AnchorPane fx:id="createEventView" prefHeight="200.0" prefWidth="200.0" visible="false">
                   <children>
                      <VBox fx:id="eventCreationVBox" alignment="CENTER" prefHeight="355.0" prefWidth="164.0" spacing="10" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                         <HBox alignment="CENTER" prefHeight="21.0" prefWidth="164.0">
@@ -61,8 +61,8 @@
                         <Label text="End Time" />
                         <HBox alignment="CENTER" prefHeight="10.0" prefWidth="175.0" spacing="10.0">
                            <children>
-                              <ComboBox fx:id="startTimeComboBox2" prefHeight="25.0" prefWidth="65.0" promptText="hr" />
-                              <ComboBox fx:id="startTimeComboBox1" prefHeight="25.0" prefWidth="65.0" promptText="min" />
+                              <ComboBox fx:id="endTimeComboBox" prefHeight="25.0" prefWidth="65.0" promptText="hr" />
+                              <ComboBox fx:id="endMinuteComboBox" prefHeight="25.0" prefWidth="65.0" promptText="min" />
                            </children>
                         </HBox>
                         <HBox alignment="TOP_CENTER" prefHeight="16.0" prefWidth="175.0">
