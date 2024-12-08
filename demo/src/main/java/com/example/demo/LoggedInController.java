@@ -181,12 +181,10 @@ public class  LoggedInController implements Initializable {
         for (int i = 0; i < 24; i++) {
             String hour = String.format("%02d", i);
             startTimeComboBox.getItems().add(hour);
-            endTimeComboBox.getItems().add(hour);
         }
         for (int i = 0; i < 60; i++) {
             String minute = String.format("%02d", i);
             startMinuteComboBox.getItems().add(minute);
-            endMinuteComboBox.getItems().add(minute);
         }
     }
     private void openCreateEventPopup(String selectedDate) {
@@ -419,8 +417,7 @@ public class  LoggedInController implements Initializable {
         try {
             String eventName = titleTextField.getText();
             LocalDate eventDate = startDatePicker.getValue();
-            if (startTimeComboBox.getValue() == null || startMinuteComboBox.getValue() == null ||
-                    endTimeComboBox.getValue() == null || endMinuteComboBox.getValue() == null) {
+            if (startTimeComboBox.getValue() == null || startMinuteComboBox.getValue() == null) {
                 System.out.println("Time fields are required.");
                 return;
             }
@@ -428,10 +425,6 @@ public class  LoggedInController implements Initializable {
             LocalTime startTime = LocalTime.of(
                     Integer.parseInt(startTimeComboBox.getValue()),
                     Integer.parseInt(startMinuteComboBox.getValue())
-            );
-            LocalTime endTime = LocalTime.of(
-                    Integer.parseInt(endTimeComboBox.getValue()),
-                    Integer.parseInt(endMinuteComboBox.getValue())
             );
 
             String note = noteTextField.getText();
@@ -447,7 +440,6 @@ public class  LoggedInController implements Initializable {
             System.out.println("Event Name: " + eventName);
             System.out.println("Event Date: " + eventDate);
             System.out.println("Start Time: " + startTime);
-            System.out.println("End Time: " + endTime);
             System.out.println("Note: " + note);
             System.out.println("Current Username: " + currentUsername);
 
@@ -461,14 +453,13 @@ public class  LoggedInController implements Initializable {
                     if (rs.next()) {
                         int userId = rs.getInt("user_ID");
 
-                        String insertQuery = "INSERT INTO events (user_id, event_name, event_date, start_time, end_time, note) VALUES (?, ?, ?, ?, ?, ?)";
+                        String insertQuery = "INSERT INTO events (user_id, event_name, event_date, start_time, end_time, note) VALUES ( ?, ?, ?, ?, ?)";
                         try (PreparedStatement insertStmt = connection.prepareStatement(insertQuery)) {
                             insertStmt.setInt(1, userId);
                             insertStmt.setString(2, eventName);
                             insertStmt.setDate(3, java.sql.Date.valueOf(eventDate));
                             insertStmt.setTime(4, java.sql.Time.valueOf(startTime));
-                            insertStmt.setTime(5, java.sql.Time.valueOf(endTime));
-                            insertStmt.setString(6, note);
+                            insertStmt.setString(5, note);
 
                             int rowsAffected = insertStmt.executeUpdate();
                             if (rowsAffected > 0) {
