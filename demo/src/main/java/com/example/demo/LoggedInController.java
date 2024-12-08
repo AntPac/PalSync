@@ -95,8 +95,6 @@ public class  LoggedInController implements Initializable {
         }
     }
 
-
-
     @FXML private ListView<String> eventListView;
 
     @FXML private VBox vbox0, vbox1, vbox2, vbox3, vbox4, vbox5, vbox6, vbox7, vbox8, vbox9;
@@ -119,7 +117,6 @@ public class  LoggedInController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         setupEventContextMenu();
-        // Add all day boxes to the list
         dayBoxes.add(vbox0); dayBoxes.add(vbox1); dayBoxes.add(vbox2); dayBoxes.add(vbox3); dayBoxes.add(vbox4);
         dayBoxes.add(vbox5); dayBoxes.add(vbox6); dayBoxes.add(vbox7); dayBoxes.add(vbox8); dayBoxes.add(vbox9);
         dayBoxes.add(vbox10); dayBoxes.add(vbox11); dayBoxes.add(vbox12); dayBoxes.add(vbox13); dayBoxes.add(vbox14);
@@ -130,7 +127,6 @@ public class  LoggedInController implements Initializable {
         dayBoxes.add(vbox35); dayBoxes.add(vbox36); dayBoxes.add(vbox37); dayBoxes.add(vbox38); dayBoxes.add(vbox39);
         dayBoxes.add(vbox40); dayBoxes.add(vbox41);
 
-        // Add all text boxes to the list
         TextBoxes.add(Text0); TextBoxes.add(Text1); TextBoxes.add(Text2); TextBoxes.add(Text3); TextBoxes.add(Text4);
         TextBoxes.add(Text5); TextBoxes.add(Text6); TextBoxes.add(Text7); TextBoxes.add(Text8); TextBoxes.add(Text9);
         TextBoxes.add(Text10); TextBoxes.add(Text11); TextBoxes.add(Text12); TextBoxes.add(Text13); TextBoxes.add(Text14);
@@ -140,8 +136,6 @@ public class  LoggedInController implements Initializable {
         TextBoxes.add(Text30); TextBoxes.add(Text31); TextBoxes.add(Text32); TextBoxes.add(Text33); TextBoxes.add(Text34);
         TextBoxes.add(Text35); TextBoxes.add(Text36); TextBoxes.add(Text37); TextBoxes.add(Text38); TextBoxes.add(Text39);
         TextBoxes.add(Text40); TextBoxes.add(Text41);
-
-        // Add event listeners to day boxes
 
         for (int i = 0; i < dayBoxes.size(); i++) {
             final int boxIndex = i;
@@ -165,15 +159,13 @@ public class  LoggedInController implements Initializable {
 
         CalendarSetup now = new CalendarSetup();
         now.calendarMonth();
-        show = now; // Save current CalendarSetup instance
+        show = now;
         setDays(show);
 
-        // Step 4: Force refresh of the UI components
         for (VBox dayBox : dayBoxes) {
-            dayBox.requestLayout(); // Ensure all layout updates are applied
+            dayBox.requestLayout();
         }
 
-        // Step 5: Add navigation button functionality
         Next.setOnMouseClicked(event -> {
             show.changeMonth(true);
             setDays(show);
@@ -185,7 +177,6 @@ public class  LoggedInController implements Initializable {
         TextMonth.setOnMouseClicked(event ->{
             openDateSelector();
         });
-
 
         for (int i = 0; i < 24; i++) {
             String hour = String.format("%02d", i);
@@ -293,7 +284,7 @@ public class  LoggedInController implements Initializable {
         String query = "SELECT user_ID FROM users WHERE username = ?";
 
 
-        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/PalSyncDB", "root", "AugChico");
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/databasename", "root", "password");
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
 
@@ -382,15 +373,13 @@ public class  LoggedInController implements Initializable {
     }
 
     private void handleEventDeletion(String selectedEventDetails) {
-        // Parse the selected event details to extract the event name or ID
+
         String[] details = selectedEventDetails.split("\n");
         if (details.length > 0) {
-            String eventName = details[1].trim(); // Assuming the event name is on the second line
+            String eventName = details[1].trim();
 
-            // Call a method to delete the event from the database
             deleteEventFromDatabase(eventName);
 
-            // Remove the event from the ListView
             eventListView.getItems().remove(selectedEventDetails);
 
             System.out.println("Event deleted successfully: " + eventName);
@@ -402,7 +391,7 @@ public class  LoggedInController implements Initializable {
     private void deleteEventFromDatabase(String eventName) {
         String deleteQuery = "DELETE FROM events WHERE event_name = ? AND user_id = ?";
 
-        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/PalSyncDB", "root", "AugChico");
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/databasename", "root", "password");
              PreparedStatement preparedStatement = connection.prepareStatement(deleteQuery)) {
 
             int userId = getUserIdFromUsername(currentUsername);
@@ -420,8 +409,6 @@ public class  LoggedInController implements Initializable {
         }
     }
 
-
-
     @FXML
     private void exitApplication() {
         System.exit(0);
@@ -430,7 +417,6 @@ public class  LoggedInController implements Initializable {
     @FXML
     private void saveEventToDatabase() {
         try {
-            // Get user input
             String eventName = titleTextField.getText();
             LocalDate eventDate = startDatePicker.getValue();
             if (startTimeComboBox.getValue() == null || startMinuteComboBox.getValue() == null ||
@@ -448,13 +434,11 @@ public class  LoggedInController implements Initializable {
                     Integer.parseInt(endMinuteComboBox.getValue())
             );
 
-            // Retrieve note from the TextField (can be null)
             String note = noteTextField.getText();
             if (note != null && note.trim().isEmpty()) {
-                note = null; // Treat empty input as null
+                note = null;
             }
 
-            // Validate input
             if (eventName == null || eventName.trim().isEmpty() || eventDate == null) {
                 System.out.println("Event name and date are required.");
                 return;
@@ -467,11 +451,9 @@ public class  LoggedInController implements Initializable {
             System.out.println("Note: " + note);
             System.out.println("Current Username: " + currentUsername);
 
-            // Database Connection
             try (Connection connection = DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/me", "root", "Password1")) {
 
-                // Get the user ID based on the logged-in username
                 String getUserIdQuery = "SELECT user_ID FROM users WHERE username = ?";
                 try (PreparedStatement getUserIdStmt = connection.prepareStatement(getUserIdQuery)) {
                     getUserIdStmt.setString(1, currentUsername);
@@ -479,7 +461,6 @@ public class  LoggedInController implements Initializable {
                     if (rs.next()) {
                         int userId = rs.getInt("user_ID");
 
-                        // Insert the event into the database
                         String insertQuery = "INSERT INTO events (user_id, event_name, event_date, start_time, end_time, note) VALUES (?, ?, ?, ?, ?, ?)";
                         try (PreparedStatement insertStmt = connection.prepareStatement(insertQuery)) {
                             insertStmt.setInt(1, userId);
@@ -489,11 +470,10 @@ public class  LoggedInController implements Initializable {
                             insertStmt.setTime(5, java.sql.Time.valueOf(endTime));
                             insertStmt.setString(6, note);
 
-                            // Execute Insert
                             int rowsAffected = insertStmt.executeUpdate();
                             if (rowsAffected > 0) {
                                 System.out.println("Event saved successfully!");
-                                switchToEventsView(); // Return to the events list
+                                switchToEventsView();
                             }
                         }
                     } else {
@@ -508,8 +488,6 @@ public class  LoggedInController implements Initializable {
             e.printStackTrace();
         }
     }
-
-
 
     @FXML
     private void switchToEventsView() {

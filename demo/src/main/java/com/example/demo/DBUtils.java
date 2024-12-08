@@ -22,7 +22,6 @@ public class DBUtils {
             FXMLLoader loader = new FXMLLoader(DBUtils.class.getResource(fxmlFile));
             root = loader.load();
 
-            // Check and set the controller if necessary
             if (username != null) {
                 Object controller = loader.getController();
                 if (controller instanceof LoggedInController) {
@@ -36,17 +35,15 @@ public class DBUtils {
             e.printStackTrace();
         }
 
-        // Get the stage properly
         Stage stage;
         if (event.getSource() instanceof Node) {
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         } else {
-            // This handles cases when the source is not a Node (like MenuItem)
             stage = (Stage) ((MenuItem) event.getSource()).getParentPopup().getOwnerWindow();
         }
 
         stage.setTitle(title);
-        stage.setScene(new Scene(root, 600, 400)); // Adjust scene size if needed
+        stage.setScene(new Scene(root, 600, 400));
         stage.show();
     }
 
@@ -61,7 +58,7 @@ public class DBUtils {
 
         try {
 
-            connection = DriverManager.getConnection("jdbc:mysql://192.168.4.34:3306/PalSyncData", "root", "Silverlining1986");
+            connection = DriverManager.getConnection("jdbc:mysql://192.168.4.34:3306/databasename", "root", "password");
 
             psCheckUserExists = connection.prepareStatement("SELECT * FROM users WHERE username = ?");
             psCheckUserExists.setString(1, username);
@@ -130,7 +127,7 @@ public class DBUtils {
 
         try {
 
-            connection = DriverManager.getConnection("jdbc:mysql://192.168.4.34:3306/PalSyncData", "root", "Silverlining1986");
+            connection = DriverManager.getConnection("jdbc:mysql://192.168.4.34:3306/databasename", "root", "password");
           
             preparedStatement = connection.prepareStatement("SELECT password FROM users WHERE username = ?");
             preparedStatement.setString(1, username);

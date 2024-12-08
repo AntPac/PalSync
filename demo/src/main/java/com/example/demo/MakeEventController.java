@@ -46,7 +46,6 @@ public class MakeEventController implements Initializable {
         System.out.println("Selected date set in MakeEventController: " + selectedDate);
     }
 
-
     public String getSelectedDate() {
         return selectedDate;
     }
@@ -60,37 +59,30 @@ public class MakeEventController implements Initializable {
             startTimeComboBox.getItems().add(time);
             endTimeComboBox.getItems().add(time);
         }
-
-        // Set the action for the save button
         saveButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 String eventName = eventNameField.getText();
-                String eventDate = selectedDate; // Use the selectedDate variable
+                String eventDate = selectedDate;
                 String startTime = startTimeComboBox.getValue();
                 String endTime = endTimeComboBox.getValue();
                 String note = noteField.getText();
 
-                // Check if selectedDate is null
                 if (eventDate == null) {
                     System.out.println("Error: No date selected for the event.");
-                    return; // Stop further execution
+                    return;
                 }
 
-                // Validate that all necessary fields are filled
                 if (eventName.isEmpty() || eventDate.isEmpty() || startTime == null || endTime == null) {
                     System.out.println("Please fill in all the required fields.");
                     return;
                 }
 
-                // Save the event to the database
                 saveEventToDatabase(eventName, eventDate, startTime, endTime, note);
 
                 closeWindow();
             }
         });
-
-
 
         cancelButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -109,7 +101,6 @@ public class MakeEventController implements Initializable {
     }
 
     private void closeWindow() {
-        // Get the stage associated with this controller
         Stage stage = (Stage) saveButton.getScene().getWindow();
         stage.close();
     }
@@ -125,8 +116,7 @@ public class MakeEventController implements Initializable {
         ResultSet resultSet = null;
 
         try {
-            connection = DriverManager.getConnection("jdbc:mysql://192.168.4.34:3306/PalSyncData", "root", "Silverlining1986");
-            // Get the user_id based on the username
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/databasename", "root", "password");
             preparedStatement = connection.prepareStatement("SELECT user_ID FROM users WHERE username = ?");
             preparedStatement.setString(1, this.username);
             resultSet = preparedStatement.executeQuery();
@@ -134,7 +124,6 @@ public class MakeEventController implements Initializable {
             if (resultSet.next()) {
                 int userId = resultSet.getInt("user_ID");
 
-                // Insert the event into the database
                 preparedStatement = connection.prepareStatement(
                         "INSERT INTO events (user_id, event_name, event_date, start_time, end_time, note) VALUES (?, ?, ?, ?, ?, ?)"
                 );
@@ -150,14 +139,12 @@ public class MakeEventController implements Initializable {
                 if (calendarController != null) {
                     calendarController.displayEventsForDate(eventDate);
                 }
-
             } else {
                 System.out.println("User not found.");
             }
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            // Close resources
             try {
                 if (resultSet != null) resultSet.close();
                 if (preparedStatement != null) preparedStatement.close();
@@ -167,13 +154,9 @@ public class MakeEventController implements Initializable {
             }
         }
     }
-    private LoggedInController calendarController; // Reference to the LoggedInController
-
+    private LoggedInController calendarController;
 
     public void setCalendarController(LoggedInController calendarController) {
         this.calendarController = calendarController;
     }
-
-
-
 }
