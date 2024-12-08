@@ -38,8 +38,6 @@ public class  LoggedInController implements Initializable {
     private String currentUsername;
 
     @FXML
-    private StackPane mainStackPane;
-    @FXML
     private AnchorPane eventsView;
     @FXML
     private AnchorPane createEventView;
@@ -284,7 +282,7 @@ public class  LoggedInController implements Initializable {
         String query = "SELECT user_ID FROM users WHERE username = ?";
 
 
-        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/DataBaseName", "root", "Password");
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/PalSyncDB", "root", "AugChico");
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
 
@@ -472,7 +470,7 @@ public class  LoggedInController implements Initializable {
                             int rowsAffected = insertStmt.executeUpdate();
                             if (rowsAffected > 0) {
                                 System.out.println("Event saved successfully!");
-                                switchToEventsView();
+                                showEventsView();
                             }
                         }
                     } else {
@@ -487,19 +485,4 @@ public class  LoggedInController implements Initializable {
             e.printStackTrace();
         }
     }
-
-    @FXML
-    private void switchToEventsView() {
-        createEventView.setVisible(false);
-        eventsView.setVisible(true);
-
-    }
-
-    @FXML
-    private void switchToCreateEventView() {
-        eventsView.setVisible(false);
-        createEventView.setVisible(true);
-    }
-
-
 }
