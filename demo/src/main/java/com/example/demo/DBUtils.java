@@ -58,7 +58,7 @@ public class DBUtils {
 
         try {
 
-            connection = DriverManager.getConnection("jdbc:mysql://192.168.4.34:3306/databasename", "root", "password");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/databasename", "root", "password");
 
             psCheckUserExists = connection.prepareStatement("SELECT * FROM users WHERE username = ?");
             psCheckUserExists.setString(1, username);
@@ -127,7 +127,7 @@ public class DBUtils {
 
         try {
 
-            connection = DriverManager.getConnection("jdbc:mysql://192.168.4.34:3306/databasename", "root", "password");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/databasename", "root", "password");
           
             preparedStatement = connection.prepareStatement("SELECT password FROM users WHERE username = ?");
             preparedStatement.setString(1, username);
