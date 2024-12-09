@@ -110,11 +110,7 @@ public class MakeEventController implements Initializable {
             System.out.println("Error: Cannot save event. Event date is null.");
             return;
         }
-        if (startTimeComboBox.getValue() == null ||
-                endTimeComboBox.getValue() == null) {
-            System.out.println("Time fields are required.");
-            return;
-        }
+
         note = noteField.getText();
         if (note != null && note.trim().isEmpty()) {
             note = "";
@@ -126,7 +122,7 @@ public class MakeEventController implements Initializable {
 
         try {
             connection = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/databasename", "root", "password");
+                    "jdbc:mysql://localhost:3306/AugChico", "root", "AugChico");
             preparedStatement = connection.prepareStatement("SELECT user_ID FROM users WHERE username = ?");
             preparedStatement.setString(1, this.username);
             resultSet = preparedStatement.executeQuery();
