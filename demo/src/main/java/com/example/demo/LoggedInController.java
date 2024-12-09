@@ -282,7 +282,7 @@ public class  LoggedInController implements Initializable {
         String query = "SELECT user_ID FROM users WHERE username = ?";
 
 
-        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/PalSyncDB", "root", "AugChico");
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/databasename", "root", "password");
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
 
@@ -389,7 +389,7 @@ public class  LoggedInController implements Initializable {
     private void deleteEventFromDatabase(String eventName) {
         String deleteQuery = "DELETE FROM events WHERE event_name = ? AND user_id = ?";
 
-        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/DataBaseName", "root", "Password");
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/Databasename", "root", "Password");
              PreparedStatement preparedStatement = connection.prepareStatement(deleteQuery)) {
 
             int userId = getUserIdFromUsername(currentUsername);
@@ -433,7 +433,7 @@ public class  LoggedInController implements Initializable {
             );
             String note = noteTextField.getText();
             if (note != null && note.trim().isEmpty()) {
-                note = null;
+                note = "";
             }
 
             if (eventName == null || eventName.trim().isEmpty() || eventDate == null) {
@@ -449,7 +449,7 @@ public class  LoggedInController implements Initializable {
             System.out.println("Current Username: " + currentUsername);
 
             try (Connection connection = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/DataBaseName", "root", "Password")) {
+                    "jdbc:mysql://localhost:3306/PalSyncDB", "root", "AugChico")) {
 
                 String getUserIdQuery = "SELECT user_ID FROM users WHERE username = ?";
                 try (PreparedStatement getUserIdStmt = connection.prepareStatement(getUserIdQuery)) {
